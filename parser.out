@@ -1,0 +1,3382 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BOOLEAN
+    COMMENT
+    UMINUS
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> function_declarations
+Rule 2     program -> global_declarations function_declarations
+Rule 3     global_declarations -> global_declarations global_declaration
+Rule 4     global_declarations -> global_declaration
+Rule 5     global_declarations -> <empty>
+Rule 6     global_declaration -> variable_decl
+Rule 7     global_declaration -> function_init
+Rule 8     function_init -> FUN name LPAREN parameter_list RPAREN return_type SEMICOLON
+Rule 9     function_declarations -> function_declarations function_decl
+Rule 10    function_declarations -> function_decl
+Rule 11    function_decl -> FUN name LPAREN parameter_list RPAREN return_type body
+Rule 12    return_type -> DECLARE type_or_arraytype
+Rule 13    return_type -> <empty>
+Rule 14    variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON
+Rule 15    modifier -> VAR
+Rule 16    modifier -> VAL
+Rule 17    body -> LBRACE statement_list RBRACE
+Rule 18    statement_list -> statement_list statement
+Rule 19    statement_list -> statement
+Rule 20    statement -> if
+Rule 21    statement -> while
+Rule 22    statement -> variable_decl
+Rule 23    statement -> assignment
+Rule 24    statement -> function_call_inline SEMICOLON
+Rule 25    statement -> print SEMICOLON
+Rule 26    statement -> <empty>
+Rule 27    if -> IF expression body else
+Rule 28    else -> ELSE body
+Rule 29    else -> <empty>
+Rule 30    while -> WHILE expression body
+Rule 31    type_or_arraytype -> type
+Rule 32    type_or_arraytype -> LBRACKET type RBRACKET
+Rule 33    type_or_arraytype -> LBRACKET LBRACKET type RBRACKET RBRACKET
+Rule 34    type -> TVOID
+Rule 35    type -> TINT
+Rule 36    type -> TSTRING
+Rule 37    type -> TBOOLEAN
+Rule 38    type -> TCHAR
+Rule 39    type -> TFLOAT
+Rule 40    function_call_inline -> name LPAREN argument_list RPAREN
+Rule 41    print -> print_type LPAREN value RPAREN
+Rule 42    print_type -> PRINT_INT
+Rule 43    print_type -> PRINT_FLOAT
+Rule 44    print_type -> PRINT_ARRAYINT
+Rule 45    print_type -> PRINT_ARRAYINT2
+Rule 46    print_type -> PRINT_STRING
+Rule 47    print_type -> PRINT_CHAR
+Rule 48    print_type -> PRINT_BOOLEAN
+Rule 49    parameter_list -> parameter COMMA parameter_list
+Rule 50    parameter_list -> parameter
+Rule 51    parameter_list -> <empty>
+Rule 52    argument_list -> argument COMMA argument_list
+Rule 53    argument_list -> argument
+Rule 54    argument_list -> <empty>
+Rule 55    parameter -> modifier name DECLARE type_or_arraytype
+Rule 56    argument -> expression
+Rule 57    expression -> expression and_or expression_m
+Rule 58    expression -> expression_m
+Rule 59    expression_m -> expression_s
+Rule 60    expression_m -> MINUS expression_m
+Rule 61    expression_m -> expression_m sign expression_s
+Rule 62    expression_s -> value
+Rule 63    expression_s -> expression_s psign value
+Rule 64    and_or -> AND
+Rule 65    and_or -> OR
+Rule 66    psign -> TIMES
+Rule 67    psign -> DIVIDE
+Rule 68    sign -> PLUS
+Rule 69    sign -> MINUS
+Rule 70    sign -> EXPONENT
+Rule 71    sign -> REMAINDER
+Rule 72    sign -> EQUALS
+Rule 73    sign -> NOTEQUALS
+Rule 74    sign -> GE
+Rule 75    sign -> GT
+Rule 76    sign -> LE
+Rule 77    sign -> LT
+Rule 78    value -> name
+Rule 79    value -> boolean
+Rule 80    value -> int
+Rule 81    value -> float
+Rule 82    value -> string
+Rule 83    value -> char
+Rule 84    value -> void
+Rule 85    value -> function_call_inline
+Rule 86    value -> array_call_inline
+Rule 87    value -> NOT name
+Rule 88    value -> LPAREN expression RPAREN
+Rule 89    assignment -> array_call_or_name ASSIGN expression SEMICOLON
+Rule 90    array_call_or_name -> name
+Rule 91    array_call_or_name -> array_call_inline
+Rule 92    array_call_inline -> name LBRACKET value RBRACKET
+Rule 93    array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET
+Rule 94    name -> NAME
+Rule 95    boolean -> TRUE
+Rule 96    boolean -> FALSE
+Rule 97    int -> INT
+Rule 98    float -> FLOAT
+Rule 99    string -> STRING
+Rule 100   char -> CHAR
+Rule 101   void -> VOID
+
+Terminals, with rules where they appear
+
+AND                  : 64
+ASSIGN               : 14 89
+BOOLEAN              : 
+CHAR                 : 100
+COMMA                : 49 52
+COMMENT              : 
+DECLARE              : 12 14 55
+DIVIDE               : 67
+ELSE                 : 28
+EQUALS               : 72
+EXPONENT             : 70
+FALSE                : 96
+FLOAT                : 98
+FUN                  : 8 11
+GE                   : 74
+GT                   : 75
+IF                   : 27
+INT                  : 97
+LBRACE               : 17
+LBRACKET             : 32 33 33 92 93 93
+LE                   : 76
+LPAREN               : 8 11 40 41 88
+LT                   : 77
+MINUS                : 60 69
+NAME                 : 94
+NOT                  : 87
+NOTEQUALS            : 73
+OR                   : 65
+PLUS                 : 68
+PRINT_ARRAYINT       : 44
+PRINT_ARRAYINT2      : 45
+PRINT_BOOLEAN        : 48
+PRINT_CHAR           : 47
+PRINT_FLOAT          : 43
+PRINT_INT            : 42
+PRINT_STRING         : 46
+RBRACE               : 17
+RBRACKET             : 32 33 33 92 93 93
+REMAINDER            : 71
+RPAREN               : 8 11 40 41 88
+SEMICOLON            : 8 14 24 25 89
+STRING               : 99
+TBOOLEAN             : 37
+TCHAR                : 38
+TFLOAT               : 39
+TIMES                : 66
+TINT                 : 35
+TRUE                 : 95
+TSTRING              : 36
+TVOID                : 34
+UMINUS               : 
+VAL                  : 16
+VAR                  : 15
+VOID                 : 101
+WHILE                : 30
+error                : 
+
+Nonterminals, with rules where they appear
+
+and_or               : 57
+argument             : 52 53
+argument_list        : 40 52
+array_call_inline    : 86 91
+array_call_or_name   : 89
+assignment           : 23
+body                 : 11 27 28 30
+boolean              : 79
+char                 : 83
+else                 : 27
+expression           : 14 27 30 56 57 88 89
+expression_m         : 57 58 60 61
+expression_s         : 59 61 63
+float                : 81
+function_call_inline : 24 85
+function_decl        : 9 10
+function_declarations : 1 2 9
+function_init        : 7
+global_declaration   : 3 4
+global_declarations  : 2 3
+if                   : 20
+int                  : 80
+modifier             : 14 55
+name                 : 8 11 14 40 55 78 87 90 92 93
+parameter            : 49 50
+parameter_list       : 8 11 49
+print                : 25
+print_type           : 41
+program              : 0
+psign                : 63
+return_type          : 8 11
+sign                 : 61
+statement            : 18 19
+statement_list       : 17 18
+string               : 82
+type                 : 31 32 33
+type_or_arraytype    : 12 14 55
+value                : 41 62 63 92 93 93
+variable_decl        : 6 22
+void                 : 84
+while                : 21
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . function_declarations
+    (2) program -> . global_declarations function_declarations
+    (9) function_declarations -> . function_declarations function_decl
+    (10) function_declarations -> . function_decl
+    (3) global_declarations -> . global_declarations global_declaration
+    (4) global_declarations -> . global_declaration
+    (5) global_declarations -> .
+    (11) function_decl -> . FUN name LPAREN parameter_list RPAREN return_type body
+    (6) global_declaration -> . variable_decl
+    (7) global_declaration -> . function_init
+    (14) variable_decl -> . modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON
+    (8) function_init -> . FUN name LPAREN parameter_list RPAREN return_type SEMICOLON
+    (15) modifier -> . VAR
+    (16) modifier -> . VAL
+
+  ! shift/reduce conflict for FUN resolved as shift
+  ! shift/reduce conflict for VAR resolved as shift
+  ! shift/reduce conflict for VAL resolved as shift
+    FUN             shift and go to state 6
+    VAR             shift and go to state 10
+    VAL             shift and go to state 11
+
+  ! FUN             [ reduce using rule 5 (global_declarations -> .) ]
+  ! VAR             [ reduce using rule 5 (global_declarations -> .) ]
+  ! VAL             [ reduce using rule 5 (global_declarations -> .) ]
+
+    program                        shift and go to state 1
+    function_declarations          shift and go to state 2
+    global_declarations            shift and go to state 3
+    function_decl                  shift and go to state 4
+    global_declaration             shift and go to state 5
+    variable_decl                  shift and go to state 7
+    function_init                  shift and go to state 8
+    modifier                       shift and go to state 9
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> function_declarations .
+    (9) function_declarations -> function_declarations . function_decl
+    (11) function_decl -> . FUN name LPAREN parameter_list RPAREN return_type body
+
+    $end            reduce using rule 1 (program -> function_declarations .)
+    FUN             shift and go to state 13
+
+    function_decl                  shift and go to state 12
+
+state 3
+
+    (2) program -> global_declarations . function_declarations
+    (3) global_declarations -> global_declarations . global_declaration
+    (9) function_declarations -> . function_declarations function_decl
+    (10) function_declarations -> . function_decl
+    (6) global_declaration -> . variable_decl
+    (7) global_declaration -> . function_init
+    (11) function_decl -> . FUN name LPAREN parameter_list RPAREN return_type body
+    (14) variable_decl -> . modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON
+    (8) function_init -> . FUN name LPAREN parameter_list RPAREN return_type SEMICOLON
+    (15) modifier -> . VAR
+    (16) modifier -> . VAL
+
+    FUN             shift and go to state 6
+    VAR             shift and go to state 10
+    VAL             shift and go to state 11
+
+    function_declarations          shift and go to state 14
+    global_declaration             shift and go to state 15
+    function_decl                  shift and go to state 4
+    variable_decl                  shift and go to state 7
+    function_init                  shift and go to state 8
+    modifier                       shift and go to state 9
+
+state 4
+
+    (10) function_declarations -> function_decl .
+
+    FUN             reduce using rule 10 (function_declarations -> function_decl .)
+    $end            reduce using rule 10 (function_declarations -> function_decl .)
+
+
+state 5
+
+    (4) global_declarations -> global_declaration .
+
+    FUN             reduce using rule 4 (global_declarations -> global_declaration .)
+    VAR             reduce using rule 4 (global_declarations -> global_declaration .)
+    VAL             reduce using rule 4 (global_declarations -> global_declaration .)
+
+
+state 6
+
+    (11) function_decl -> FUN . name LPAREN parameter_list RPAREN return_type body
+    (8) function_init -> FUN . name LPAREN parameter_list RPAREN return_type SEMICOLON
+    (94) name -> . NAME
+
+    NAME            shift and go to state 17
+
+    name                           shift and go to state 16
+
+state 7
+
+    (6) global_declaration -> variable_decl .
+
+    FUN             reduce using rule 6 (global_declaration -> variable_decl .)
+    VAR             reduce using rule 6 (global_declaration -> variable_decl .)
+    VAL             reduce using rule 6 (global_declaration -> variable_decl .)
+
+
+state 8
+
+    (7) global_declaration -> function_init .
+
+    FUN             reduce using rule 7 (global_declaration -> function_init .)
+    VAR             reduce using rule 7 (global_declaration -> function_init .)
+    VAL             reduce using rule 7 (global_declaration -> function_init .)
+
+
+state 9
+
+    (14) variable_decl -> modifier . name DECLARE type_or_arraytype ASSIGN expression SEMICOLON
+    (94) name -> . NAME
+
+    NAME            shift and go to state 17
+
+    name                           shift and go to state 18
+
+state 10
+
+    (15) modifier -> VAR .
+
+    NAME            reduce using rule 15 (modifier -> VAR .)
+
+
+state 11
+
+    (16) modifier -> VAL .
+
+    NAME            reduce using rule 16 (modifier -> VAL .)
+
+
+state 12
+
+    (9) function_declarations -> function_declarations function_decl .
+
+    FUN             reduce using rule 9 (function_declarations -> function_declarations function_decl .)
+    $end            reduce using rule 9 (function_declarations -> function_declarations function_decl .)
+
+
+state 13
+
+    (11) function_decl -> FUN . name LPAREN parameter_list RPAREN return_type body
+    (94) name -> . NAME
+
+    NAME            shift and go to state 17
+
+    name                           shift and go to state 19
+
+state 14
+
+    (2) program -> global_declarations function_declarations .
+    (9) function_declarations -> function_declarations . function_decl
+    (11) function_decl -> . FUN name LPAREN parameter_list RPAREN return_type body
+
+    $end            reduce using rule 2 (program -> global_declarations function_declarations .)
+    FUN             shift and go to state 13
+
+    function_decl                  shift and go to state 12
+
+state 15
+
+    (3) global_declarations -> global_declarations global_declaration .
+
+    FUN             reduce using rule 3 (global_declarations -> global_declarations global_declaration .)
+    VAR             reduce using rule 3 (global_declarations -> global_declarations global_declaration .)
+    VAL             reduce using rule 3 (global_declarations -> global_declarations global_declaration .)
+
+
+state 16
+
+    (11) function_decl -> FUN name . LPAREN parameter_list RPAREN return_type body
+    (8) function_init -> FUN name . LPAREN parameter_list RPAREN return_type SEMICOLON
+
+    LPAREN          shift and go to state 20
+
+
+state 17
+
+    (94) name -> NAME .
+
+    LPAREN          reduce using rule 94 (name -> NAME .)
+    DECLARE         reduce using rule 94 (name -> NAME .)
+    LBRACKET        reduce using rule 94 (name -> NAME .)
+    TIMES           reduce using rule 94 (name -> NAME .)
+    DIVIDE          reduce using rule 94 (name -> NAME .)
+    PLUS            reduce using rule 94 (name -> NAME .)
+    MINUS           reduce using rule 94 (name -> NAME .)
+    EXPONENT        reduce using rule 94 (name -> NAME .)
+    REMAINDER       reduce using rule 94 (name -> NAME .)
+    EQUALS          reduce using rule 94 (name -> NAME .)
+    NOTEQUALS       reduce using rule 94 (name -> NAME .)
+    GE              reduce using rule 94 (name -> NAME .)
+    GT              reduce using rule 94 (name -> NAME .)
+    LE              reduce using rule 94 (name -> NAME .)
+    LT              reduce using rule 94 (name -> NAME .)
+    SEMICOLON       reduce using rule 94 (name -> NAME .)
+    AND             reduce using rule 94 (name -> NAME .)
+    OR              reduce using rule 94 (name -> NAME .)
+    RPAREN          reduce using rule 94 (name -> NAME .)
+    COMMA           reduce using rule 94 (name -> NAME .)
+    LBRACE          reduce using rule 94 (name -> NAME .)
+    RBRACKET        reduce using rule 94 (name -> NAME .)
+    ASSIGN          reduce using rule 94 (name -> NAME .)
+
+
+state 18
+
+    (14) variable_decl -> modifier name . DECLARE type_or_arraytype ASSIGN expression SEMICOLON
+
+    DECLARE         shift and go to state 21
+
+
+state 19
+
+    (11) function_decl -> FUN name . LPAREN parameter_list RPAREN return_type body
+
+    LPAREN          shift and go to state 22
+
+
+state 20
+
+    (11) function_decl -> FUN name LPAREN . parameter_list RPAREN return_type body
+    (8) function_init -> FUN name LPAREN . parameter_list RPAREN return_type SEMICOLON
+    (49) parameter_list -> . parameter COMMA parameter_list
+    (50) parameter_list -> . parameter
+    (51) parameter_list -> .
+    (55) parameter -> . modifier name DECLARE type_or_arraytype
+    (15) modifier -> . VAR
+    (16) modifier -> . VAL
+
+    RPAREN          reduce using rule 51 (parameter_list -> .)
+    VAR             shift and go to state 10
+    VAL             shift and go to state 11
+
+    parameter_list                 shift and go to state 23
+    parameter                      shift and go to state 24
+    modifier                       shift and go to state 25
+
+state 21
+
+    (14) variable_decl -> modifier name DECLARE . type_or_arraytype ASSIGN expression SEMICOLON
+    (31) type_or_arraytype -> . type
+    (32) type_or_arraytype -> . LBRACKET type RBRACKET
+    (33) type_or_arraytype -> . LBRACKET LBRACKET type RBRACKET RBRACKET
+    (34) type -> . TVOID
+    (35) type -> . TINT
+    (36) type -> . TSTRING
+    (37) type -> . TBOOLEAN
+    (38) type -> . TCHAR
+    (39) type -> . TFLOAT
+
+    LBRACKET        shift and go to state 28
+    TVOID           shift and go to state 29
+    TINT            shift and go to state 30
+    TSTRING         shift and go to state 31
+    TBOOLEAN        shift and go to state 32
+    TCHAR           shift and go to state 33
+    TFLOAT          shift and go to state 34
+
+    type_or_arraytype              shift and go to state 26
+    type                           shift and go to state 27
+
+state 22
+
+    (11) function_decl -> FUN name LPAREN . parameter_list RPAREN return_type body
+    (49) parameter_list -> . parameter COMMA parameter_list
+    (50) parameter_list -> . parameter
+    (51) parameter_list -> .
+    (55) parameter -> . modifier name DECLARE type_or_arraytype
+    (15) modifier -> . VAR
+    (16) modifier -> . VAL
+
+    RPAREN          reduce using rule 51 (parameter_list -> .)
+    VAR             shift and go to state 10
+    VAL             shift and go to state 11
+
+    parameter_list                 shift and go to state 35
+    parameter                      shift and go to state 24
+    modifier                       shift and go to state 25
+
+state 23
+
+    (11) function_decl -> FUN name LPAREN parameter_list . RPAREN return_type body
+    (8) function_init -> FUN name LPAREN parameter_list . RPAREN return_type SEMICOLON
+
+    RPAREN          shift and go to state 36
+
+
+state 24
+
+    (49) parameter_list -> parameter . COMMA parameter_list
+    (50) parameter_list -> parameter .
+
+    COMMA           shift and go to state 37
+    RPAREN          reduce using rule 50 (parameter_list -> parameter .)
+
+
+state 25
+
+    (55) parameter -> modifier . name DECLARE type_or_arraytype
+    (94) name -> . NAME
+
+    NAME            shift and go to state 17
+
+    name                           shift and go to state 38
+
+state 26
+
+    (14) variable_decl -> modifier name DECLARE type_or_arraytype . ASSIGN expression SEMICOLON
+
+    ASSIGN          shift and go to state 39
+
+
+state 27
+
+    (31) type_or_arraytype -> type .
+
+    ASSIGN          reduce using rule 31 (type_or_arraytype -> type .)
+    SEMICOLON       reduce using rule 31 (type_or_arraytype -> type .)
+    LBRACE          reduce using rule 31 (type_or_arraytype -> type .)
+    COMMA           reduce using rule 31 (type_or_arraytype -> type .)
+    RPAREN          reduce using rule 31 (type_or_arraytype -> type .)
+
+
+state 28
+
+    (32) type_or_arraytype -> LBRACKET . type RBRACKET
+    (33) type_or_arraytype -> LBRACKET . LBRACKET type RBRACKET RBRACKET
+    (34) type -> . TVOID
+    (35) type -> . TINT
+    (36) type -> . TSTRING
+    (37) type -> . TBOOLEAN
+    (38) type -> . TCHAR
+    (39) type -> . TFLOAT
+
+    LBRACKET        shift and go to state 40
+    TVOID           shift and go to state 29
+    TINT            shift and go to state 30
+    TSTRING         shift and go to state 31
+    TBOOLEAN        shift and go to state 32
+    TCHAR           shift and go to state 33
+    TFLOAT          shift and go to state 34
+
+    type                           shift and go to state 41
+
+state 29
+
+    (34) type -> TVOID .
+
+    ASSIGN          reduce using rule 34 (type -> TVOID .)
+    RBRACKET        reduce using rule 34 (type -> TVOID .)
+    SEMICOLON       reduce using rule 34 (type -> TVOID .)
+    LBRACE          reduce using rule 34 (type -> TVOID .)
+    COMMA           reduce using rule 34 (type -> TVOID .)
+    RPAREN          reduce using rule 34 (type -> TVOID .)
+
+
+state 30
+
+    (35) type -> TINT .
+
+    ASSIGN          reduce using rule 35 (type -> TINT .)
+    RBRACKET        reduce using rule 35 (type -> TINT .)
+    SEMICOLON       reduce using rule 35 (type -> TINT .)
+    LBRACE          reduce using rule 35 (type -> TINT .)
+    COMMA           reduce using rule 35 (type -> TINT .)
+    RPAREN          reduce using rule 35 (type -> TINT .)
+
+
+state 31
+
+    (36) type -> TSTRING .
+
+    ASSIGN          reduce using rule 36 (type -> TSTRING .)
+    RBRACKET        reduce using rule 36 (type -> TSTRING .)
+    SEMICOLON       reduce using rule 36 (type -> TSTRING .)
+    LBRACE          reduce using rule 36 (type -> TSTRING .)
+    COMMA           reduce using rule 36 (type -> TSTRING .)
+    RPAREN          reduce using rule 36 (type -> TSTRING .)
+
+
+state 32
+
+    (37) type -> TBOOLEAN .
+
+    ASSIGN          reduce using rule 37 (type -> TBOOLEAN .)
+    RBRACKET        reduce using rule 37 (type -> TBOOLEAN .)
+    SEMICOLON       reduce using rule 37 (type -> TBOOLEAN .)
+    LBRACE          reduce using rule 37 (type -> TBOOLEAN .)
+    COMMA           reduce using rule 37 (type -> TBOOLEAN .)
+    RPAREN          reduce using rule 37 (type -> TBOOLEAN .)
+
+
+state 33
+
+    (38) type -> TCHAR .
+
+    ASSIGN          reduce using rule 38 (type -> TCHAR .)
+    RBRACKET        reduce using rule 38 (type -> TCHAR .)
+    SEMICOLON       reduce using rule 38 (type -> TCHAR .)
+    LBRACE          reduce using rule 38 (type -> TCHAR .)
+    COMMA           reduce using rule 38 (type -> TCHAR .)
+    RPAREN          reduce using rule 38 (type -> TCHAR .)
+
+
+state 34
+
+    (39) type -> TFLOAT .
+
+    ASSIGN          reduce using rule 39 (type -> TFLOAT .)
+    RBRACKET        reduce using rule 39 (type -> TFLOAT .)
+    SEMICOLON       reduce using rule 39 (type -> TFLOAT .)
+    LBRACE          reduce using rule 39 (type -> TFLOAT .)
+    COMMA           reduce using rule 39 (type -> TFLOAT .)
+    RPAREN          reduce using rule 39 (type -> TFLOAT .)
+
+
+state 35
+
+    (11) function_decl -> FUN name LPAREN parameter_list . RPAREN return_type body
+
+    RPAREN          shift and go to state 42
+
+
+state 36
+
+    (11) function_decl -> FUN name LPAREN parameter_list RPAREN . return_type body
+    (8) function_init -> FUN name LPAREN parameter_list RPAREN . return_type SEMICOLON
+    (12) return_type -> . DECLARE type_or_arraytype
+    (13) return_type -> .
+
+    DECLARE         shift and go to state 44
+    SEMICOLON       reduce using rule 13 (return_type -> .)
+    LBRACE          reduce using rule 13 (return_type -> .)
+
+    return_type                    shift and go to state 43
+
+state 37
+
+    (49) parameter_list -> parameter COMMA . parameter_list
+    (49) parameter_list -> . parameter COMMA parameter_list
+    (50) parameter_list -> . parameter
+    (51) parameter_list -> .
+    (55) parameter -> . modifier name DECLARE type_or_arraytype
+    (15) modifier -> . VAR
+    (16) modifier -> . VAL
+
+    RPAREN          reduce using rule 51 (parameter_list -> .)
+    VAR             shift and go to state 10
+    VAL             shift and go to state 11
+
+    parameter                      shift and go to state 24
+    parameter_list                 shift and go to state 45
+    modifier                       shift and go to state 25
+
+state 38
+
+    (55) parameter -> modifier name . DECLARE type_or_arraytype
+
+    DECLARE         shift and go to state 46
+
+
+state 39
+
+    (14) variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN . expression SEMICOLON
+    (57) expression -> . expression and_or expression_m
+    (58) expression -> . expression_m
+    (59) expression_m -> . expression_s
+    (60) expression_m -> . MINUS expression_m
+    (61) expression_m -> . expression_m sign expression_s
+    (62) expression_s -> . value
+    (63) expression_s -> . expression_s psign value
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    MINUS           shift and go to state 51
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    name                           shift and go to state 47
+    expression                     shift and go to state 48
+    expression_m                   shift and go to state 49
+    expression_s                   shift and go to state 50
+    value                          shift and go to state 52
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 40
+
+    (33) type_or_arraytype -> LBRACKET LBRACKET . type RBRACKET RBRACKET
+    (34) type -> . TVOID
+    (35) type -> . TINT
+    (36) type -> . TSTRING
+    (37) type -> . TBOOLEAN
+    (38) type -> . TCHAR
+    (39) type -> . TFLOAT
+
+    TVOID           shift and go to state 29
+    TINT            shift and go to state 30
+    TSTRING         shift and go to state 31
+    TBOOLEAN        shift and go to state 32
+    TCHAR           shift and go to state 33
+    TFLOAT          shift and go to state 34
+
+    type                           shift and go to state 70
+
+state 41
+
+    (32) type_or_arraytype -> LBRACKET type . RBRACKET
+
+    RBRACKET        shift and go to state 71
+
+
+state 42
+
+    (11) function_decl -> FUN name LPAREN parameter_list RPAREN . return_type body
+    (12) return_type -> . DECLARE type_or_arraytype
+    (13) return_type -> .
+
+    DECLARE         shift and go to state 44
+    LBRACE          reduce using rule 13 (return_type -> .)
+
+    return_type                    shift and go to state 72
+
+state 43
+
+    (11) function_decl -> FUN name LPAREN parameter_list RPAREN return_type . body
+    (8) function_init -> FUN name LPAREN parameter_list RPAREN return_type . SEMICOLON
+    (17) body -> . LBRACE statement_list RBRACE
+
+    SEMICOLON       shift and go to state 74
+    LBRACE          shift and go to state 75
+
+    body                           shift and go to state 73
+
+state 44
+
+    (12) return_type -> DECLARE . type_or_arraytype
+    (31) type_or_arraytype -> . type
+    (32) type_or_arraytype -> . LBRACKET type RBRACKET
+    (33) type_or_arraytype -> . LBRACKET LBRACKET type RBRACKET RBRACKET
+    (34) type -> . TVOID
+    (35) type -> . TINT
+    (36) type -> . TSTRING
+    (37) type -> . TBOOLEAN
+    (38) type -> . TCHAR
+    (39) type -> . TFLOAT
+
+    LBRACKET        shift and go to state 28
+    TVOID           shift and go to state 29
+    TINT            shift and go to state 30
+    TSTRING         shift and go to state 31
+    TBOOLEAN        shift and go to state 32
+    TCHAR           shift and go to state 33
+    TFLOAT          shift and go to state 34
+
+    type_or_arraytype              shift and go to state 76
+    type                           shift and go to state 27
+
+state 45
+
+    (49) parameter_list -> parameter COMMA parameter_list .
+
+    RPAREN          reduce using rule 49 (parameter_list -> parameter COMMA parameter_list .)
+
+
+state 46
+
+    (55) parameter -> modifier name DECLARE . type_or_arraytype
+    (31) type_or_arraytype -> . type
+    (32) type_or_arraytype -> . LBRACKET type RBRACKET
+    (33) type_or_arraytype -> . LBRACKET LBRACKET type RBRACKET RBRACKET
+    (34) type -> . TVOID
+    (35) type -> . TINT
+    (36) type -> . TSTRING
+    (37) type -> . TBOOLEAN
+    (38) type -> . TCHAR
+    (39) type -> . TFLOAT
+
+    LBRACKET        shift and go to state 28
+    TVOID           shift and go to state 29
+    TINT            shift and go to state 30
+    TSTRING         shift and go to state 31
+    TBOOLEAN        shift and go to state 32
+    TCHAR           shift and go to state 33
+    TFLOAT          shift and go to state 34
+
+    type_or_arraytype              shift and go to state 77
+    type                           shift and go to state 27
+
+state 47
+
+    (78) value -> name .
+    (40) function_call_inline -> name . LPAREN argument_list RPAREN
+    (92) array_call_inline -> name . LBRACKET value RBRACKET
+    (93) array_call_inline -> name . LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    TIMES           reduce using rule 78 (value -> name .)
+    DIVIDE          reduce using rule 78 (value -> name .)
+    PLUS            reduce using rule 78 (value -> name .)
+    MINUS           reduce using rule 78 (value -> name .)
+    EXPONENT        reduce using rule 78 (value -> name .)
+    REMAINDER       reduce using rule 78 (value -> name .)
+    EQUALS          reduce using rule 78 (value -> name .)
+    NOTEQUALS       reduce using rule 78 (value -> name .)
+    GE              reduce using rule 78 (value -> name .)
+    GT              reduce using rule 78 (value -> name .)
+    LE              reduce using rule 78 (value -> name .)
+    LT              reduce using rule 78 (value -> name .)
+    SEMICOLON       reduce using rule 78 (value -> name .)
+    AND             reduce using rule 78 (value -> name .)
+    OR              reduce using rule 78 (value -> name .)
+    RPAREN          reduce using rule 78 (value -> name .)
+    COMMA           reduce using rule 78 (value -> name .)
+    LBRACE          reduce using rule 78 (value -> name .)
+    RBRACKET        reduce using rule 78 (value -> name .)
+    LPAREN          shift and go to state 78
+    LBRACKET        shift and go to state 79
+
+
+state 48
+
+    (14) variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression . SEMICOLON
+    (57) expression -> expression . and_or expression_m
+    (64) and_or -> . AND
+    (65) and_or -> . OR
+
+    SEMICOLON       shift and go to state 80
+    AND             shift and go to state 82
+    OR              shift and go to state 83
+
+    and_or                         shift and go to state 81
+
+state 49
+
+    (58) expression -> expression_m .
+    (61) expression_m -> expression_m . sign expression_s
+    (68) sign -> . PLUS
+    (69) sign -> . MINUS
+    (70) sign -> . EXPONENT
+    (71) sign -> . REMAINDER
+    (72) sign -> . EQUALS
+    (73) sign -> . NOTEQUALS
+    (74) sign -> . GE
+    (75) sign -> . GT
+    (76) sign -> . LE
+    (77) sign -> . LT
+
+    SEMICOLON       reduce using rule 58 (expression -> expression_m .)
+    AND             reduce using rule 58 (expression -> expression_m .)
+    OR              reduce using rule 58 (expression -> expression_m .)
+    RPAREN          reduce using rule 58 (expression -> expression_m .)
+    COMMA           reduce using rule 58 (expression -> expression_m .)
+    LBRACE          reduce using rule 58 (expression -> expression_m .)
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+    EXPONENT        shift and go to state 87
+    REMAINDER       shift and go to state 88
+    EQUALS          shift and go to state 89
+    NOTEQUALS       shift and go to state 90
+    GE              shift and go to state 91
+    GT              shift and go to state 92
+    LE              shift and go to state 93
+    LT              shift and go to state 94
+
+    sign                           shift and go to state 84
+
+state 50
+
+    (59) expression_m -> expression_s .
+    (63) expression_s -> expression_s . psign value
+    (66) psign -> . TIMES
+    (67) psign -> . DIVIDE
+
+    PLUS            reduce using rule 59 (expression_m -> expression_s .)
+    MINUS           reduce using rule 59 (expression_m -> expression_s .)
+    EXPONENT        reduce using rule 59 (expression_m -> expression_s .)
+    REMAINDER       reduce using rule 59 (expression_m -> expression_s .)
+    EQUALS          reduce using rule 59 (expression_m -> expression_s .)
+    NOTEQUALS       reduce using rule 59 (expression_m -> expression_s .)
+    GE              reduce using rule 59 (expression_m -> expression_s .)
+    GT              reduce using rule 59 (expression_m -> expression_s .)
+    LE              reduce using rule 59 (expression_m -> expression_s .)
+    LT              reduce using rule 59 (expression_m -> expression_s .)
+    SEMICOLON       reduce using rule 59 (expression_m -> expression_s .)
+    AND             reduce using rule 59 (expression_m -> expression_s .)
+    OR              reduce using rule 59 (expression_m -> expression_s .)
+    RPAREN          reduce using rule 59 (expression_m -> expression_s .)
+    COMMA           reduce using rule 59 (expression_m -> expression_s .)
+    LBRACE          reduce using rule 59 (expression_m -> expression_s .)
+    TIMES           shift and go to state 96
+    DIVIDE          shift and go to state 97
+
+    psign                          shift and go to state 95
+
+state 51
+
+    (60) expression_m -> MINUS . expression_m
+    (59) expression_m -> . expression_s
+    (60) expression_m -> . MINUS expression_m
+    (61) expression_m -> . expression_m sign expression_s
+    (62) expression_s -> . value
+    (63) expression_s -> . expression_s psign value
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    MINUS           shift and go to state 51
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    expression_m                   shift and go to state 98
+    expression_s                   shift and go to state 50
+    value                          shift and go to state 52
+    name                           shift and go to state 47
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 52
+
+    (62) expression_s -> value .
+
+    TIMES           reduce using rule 62 (expression_s -> value .)
+    DIVIDE          reduce using rule 62 (expression_s -> value .)
+    PLUS            reduce using rule 62 (expression_s -> value .)
+    MINUS           reduce using rule 62 (expression_s -> value .)
+    EXPONENT        reduce using rule 62 (expression_s -> value .)
+    REMAINDER       reduce using rule 62 (expression_s -> value .)
+    EQUALS          reduce using rule 62 (expression_s -> value .)
+    NOTEQUALS       reduce using rule 62 (expression_s -> value .)
+    GE              reduce using rule 62 (expression_s -> value .)
+    GT              reduce using rule 62 (expression_s -> value .)
+    LE              reduce using rule 62 (expression_s -> value .)
+    LT              reduce using rule 62 (expression_s -> value .)
+    SEMICOLON       reduce using rule 62 (expression_s -> value .)
+    AND             reduce using rule 62 (expression_s -> value .)
+    OR              reduce using rule 62 (expression_s -> value .)
+    RPAREN          reduce using rule 62 (expression_s -> value .)
+    COMMA           reduce using rule 62 (expression_s -> value .)
+    LBRACE          reduce using rule 62 (expression_s -> value .)
+
+
+state 53
+
+    (79) value -> boolean .
+
+    TIMES           reduce using rule 79 (value -> boolean .)
+    DIVIDE          reduce using rule 79 (value -> boolean .)
+    PLUS            reduce using rule 79 (value -> boolean .)
+    MINUS           reduce using rule 79 (value -> boolean .)
+    EXPONENT        reduce using rule 79 (value -> boolean .)
+    REMAINDER       reduce using rule 79 (value -> boolean .)
+    EQUALS          reduce using rule 79 (value -> boolean .)
+    NOTEQUALS       reduce using rule 79 (value -> boolean .)
+    GE              reduce using rule 79 (value -> boolean .)
+    GT              reduce using rule 79 (value -> boolean .)
+    LE              reduce using rule 79 (value -> boolean .)
+    LT              reduce using rule 79 (value -> boolean .)
+    SEMICOLON       reduce using rule 79 (value -> boolean .)
+    AND             reduce using rule 79 (value -> boolean .)
+    OR              reduce using rule 79 (value -> boolean .)
+    RPAREN          reduce using rule 79 (value -> boolean .)
+    COMMA           reduce using rule 79 (value -> boolean .)
+    LBRACE          reduce using rule 79 (value -> boolean .)
+    RBRACKET        reduce using rule 79 (value -> boolean .)
+
+
+state 54
+
+    (80) value -> int .
+
+    TIMES           reduce using rule 80 (value -> int .)
+    DIVIDE          reduce using rule 80 (value -> int .)
+    PLUS            reduce using rule 80 (value -> int .)
+    MINUS           reduce using rule 80 (value -> int .)
+    EXPONENT        reduce using rule 80 (value -> int .)
+    REMAINDER       reduce using rule 80 (value -> int .)
+    EQUALS          reduce using rule 80 (value -> int .)
+    NOTEQUALS       reduce using rule 80 (value -> int .)
+    GE              reduce using rule 80 (value -> int .)
+    GT              reduce using rule 80 (value -> int .)
+    LE              reduce using rule 80 (value -> int .)
+    LT              reduce using rule 80 (value -> int .)
+    SEMICOLON       reduce using rule 80 (value -> int .)
+    AND             reduce using rule 80 (value -> int .)
+    OR              reduce using rule 80 (value -> int .)
+    RPAREN          reduce using rule 80 (value -> int .)
+    COMMA           reduce using rule 80 (value -> int .)
+    LBRACE          reduce using rule 80 (value -> int .)
+    RBRACKET        reduce using rule 80 (value -> int .)
+
+
+state 55
+
+    (81) value -> float .
+
+    TIMES           reduce using rule 81 (value -> float .)
+    DIVIDE          reduce using rule 81 (value -> float .)
+    PLUS            reduce using rule 81 (value -> float .)
+    MINUS           reduce using rule 81 (value -> float .)
+    EXPONENT        reduce using rule 81 (value -> float .)
+    REMAINDER       reduce using rule 81 (value -> float .)
+    EQUALS          reduce using rule 81 (value -> float .)
+    NOTEQUALS       reduce using rule 81 (value -> float .)
+    GE              reduce using rule 81 (value -> float .)
+    GT              reduce using rule 81 (value -> float .)
+    LE              reduce using rule 81 (value -> float .)
+    LT              reduce using rule 81 (value -> float .)
+    SEMICOLON       reduce using rule 81 (value -> float .)
+    AND             reduce using rule 81 (value -> float .)
+    OR              reduce using rule 81 (value -> float .)
+    RPAREN          reduce using rule 81 (value -> float .)
+    COMMA           reduce using rule 81 (value -> float .)
+    LBRACE          reduce using rule 81 (value -> float .)
+    RBRACKET        reduce using rule 81 (value -> float .)
+
+
+state 56
+
+    (82) value -> string .
+
+    TIMES           reduce using rule 82 (value -> string .)
+    DIVIDE          reduce using rule 82 (value -> string .)
+    PLUS            reduce using rule 82 (value -> string .)
+    MINUS           reduce using rule 82 (value -> string .)
+    EXPONENT        reduce using rule 82 (value -> string .)
+    REMAINDER       reduce using rule 82 (value -> string .)
+    EQUALS          reduce using rule 82 (value -> string .)
+    NOTEQUALS       reduce using rule 82 (value -> string .)
+    GE              reduce using rule 82 (value -> string .)
+    GT              reduce using rule 82 (value -> string .)
+    LE              reduce using rule 82 (value -> string .)
+    LT              reduce using rule 82 (value -> string .)
+    SEMICOLON       reduce using rule 82 (value -> string .)
+    AND             reduce using rule 82 (value -> string .)
+    OR              reduce using rule 82 (value -> string .)
+    RPAREN          reduce using rule 82 (value -> string .)
+    COMMA           reduce using rule 82 (value -> string .)
+    LBRACE          reduce using rule 82 (value -> string .)
+    RBRACKET        reduce using rule 82 (value -> string .)
+
+
+state 57
+
+    (83) value -> char .
+
+    TIMES           reduce using rule 83 (value -> char .)
+    DIVIDE          reduce using rule 83 (value -> char .)
+    PLUS            reduce using rule 83 (value -> char .)
+    MINUS           reduce using rule 83 (value -> char .)
+    EXPONENT        reduce using rule 83 (value -> char .)
+    REMAINDER       reduce using rule 83 (value -> char .)
+    EQUALS          reduce using rule 83 (value -> char .)
+    NOTEQUALS       reduce using rule 83 (value -> char .)
+    GE              reduce using rule 83 (value -> char .)
+    GT              reduce using rule 83 (value -> char .)
+    LE              reduce using rule 83 (value -> char .)
+    LT              reduce using rule 83 (value -> char .)
+    SEMICOLON       reduce using rule 83 (value -> char .)
+    AND             reduce using rule 83 (value -> char .)
+    OR              reduce using rule 83 (value -> char .)
+    RPAREN          reduce using rule 83 (value -> char .)
+    COMMA           reduce using rule 83 (value -> char .)
+    LBRACE          reduce using rule 83 (value -> char .)
+    RBRACKET        reduce using rule 83 (value -> char .)
+
+
+state 58
+
+    (84) value -> void .
+
+    TIMES           reduce using rule 84 (value -> void .)
+    DIVIDE          reduce using rule 84 (value -> void .)
+    PLUS            reduce using rule 84 (value -> void .)
+    MINUS           reduce using rule 84 (value -> void .)
+    EXPONENT        reduce using rule 84 (value -> void .)
+    REMAINDER       reduce using rule 84 (value -> void .)
+    EQUALS          reduce using rule 84 (value -> void .)
+    NOTEQUALS       reduce using rule 84 (value -> void .)
+    GE              reduce using rule 84 (value -> void .)
+    GT              reduce using rule 84 (value -> void .)
+    LE              reduce using rule 84 (value -> void .)
+    LT              reduce using rule 84 (value -> void .)
+    SEMICOLON       reduce using rule 84 (value -> void .)
+    AND             reduce using rule 84 (value -> void .)
+    OR              reduce using rule 84 (value -> void .)
+    RPAREN          reduce using rule 84 (value -> void .)
+    COMMA           reduce using rule 84 (value -> void .)
+    LBRACE          reduce using rule 84 (value -> void .)
+    RBRACKET        reduce using rule 84 (value -> void .)
+
+
+state 59
+
+    (85) value -> function_call_inline .
+
+    TIMES           reduce using rule 85 (value -> function_call_inline .)
+    DIVIDE          reduce using rule 85 (value -> function_call_inline .)
+    PLUS            reduce using rule 85 (value -> function_call_inline .)
+    MINUS           reduce using rule 85 (value -> function_call_inline .)
+    EXPONENT        reduce using rule 85 (value -> function_call_inline .)
+    REMAINDER       reduce using rule 85 (value -> function_call_inline .)
+    EQUALS          reduce using rule 85 (value -> function_call_inline .)
+    NOTEQUALS       reduce using rule 85 (value -> function_call_inline .)
+    GE              reduce using rule 85 (value -> function_call_inline .)
+    GT              reduce using rule 85 (value -> function_call_inline .)
+    LE              reduce using rule 85 (value -> function_call_inline .)
+    LT              reduce using rule 85 (value -> function_call_inline .)
+    SEMICOLON       reduce using rule 85 (value -> function_call_inline .)
+    AND             reduce using rule 85 (value -> function_call_inline .)
+    OR              reduce using rule 85 (value -> function_call_inline .)
+    RPAREN          reduce using rule 85 (value -> function_call_inline .)
+    COMMA           reduce using rule 85 (value -> function_call_inline .)
+    LBRACE          reduce using rule 85 (value -> function_call_inline .)
+    RBRACKET        reduce using rule 85 (value -> function_call_inline .)
+
+
+state 60
+
+    (86) value -> array_call_inline .
+
+    TIMES           reduce using rule 86 (value -> array_call_inline .)
+    DIVIDE          reduce using rule 86 (value -> array_call_inline .)
+    PLUS            reduce using rule 86 (value -> array_call_inline .)
+    MINUS           reduce using rule 86 (value -> array_call_inline .)
+    EXPONENT        reduce using rule 86 (value -> array_call_inline .)
+    REMAINDER       reduce using rule 86 (value -> array_call_inline .)
+    EQUALS          reduce using rule 86 (value -> array_call_inline .)
+    NOTEQUALS       reduce using rule 86 (value -> array_call_inline .)
+    GE              reduce using rule 86 (value -> array_call_inline .)
+    GT              reduce using rule 86 (value -> array_call_inline .)
+    LE              reduce using rule 86 (value -> array_call_inline .)
+    LT              reduce using rule 86 (value -> array_call_inline .)
+    SEMICOLON       reduce using rule 86 (value -> array_call_inline .)
+    AND             reduce using rule 86 (value -> array_call_inline .)
+    OR              reduce using rule 86 (value -> array_call_inline .)
+    RPAREN          reduce using rule 86 (value -> array_call_inline .)
+    COMMA           reduce using rule 86 (value -> array_call_inline .)
+    LBRACE          reduce using rule 86 (value -> array_call_inline .)
+    RBRACKET        reduce using rule 86 (value -> array_call_inline .)
+
+
+state 61
+
+    (87) value -> NOT . name
+    (94) name -> . NAME
+
+    NAME            shift and go to state 17
+
+    name                           shift and go to state 99
+
+state 62
+
+    (88) value -> LPAREN . expression RPAREN
+    (57) expression -> . expression and_or expression_m
+    (58) expression -> . expression_m
+    (59) expression_m -> . expression_s
+    (60) expression_m -> . MINUS expression_m
+    (61) expression_m -> . expression_m sign expression_s
+    (62) expression_s -> . value
+    (63) expression_s -> . expression_s psign value
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    MINUS           shift and go to state 51
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    expression                     shift and go to state 100
+    expression_m                   shift and go to state 49
+    expression_s                   shift and go to state 50
+    value                          shift and go to state 52
+    name                           shift and go to state 47
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 63
+
+    (95) boolean -> TRUE .
+
+    TIMES           reduce using rule 95 (boolean -> TRUE .)
+    DIVIDE          reduce using rule 95 (boolean -> TRUE .)
+    PLUS            reduce using rule 95 (boolean -> TRUE .)
+    MINUS           reduce using rule 95 (boolean -> TRUE .)
+    EXPONENT        reduce using rule 95 (boolean -> TRUE .)
+    REMAINDER       reduce using rule 95 (boolean -> TRUE .)
+    EQUALS          reduce using rule 95 (boolean -> TRUE .)
+    NOTEQUALS       reduce using rule 95 (boolean -> TRUE .)
+    GE              reduce using rule 95 (boolean -> TRUE .)
+    GT              reduce using rule 95 (boolean -> TRUE .)
+    LE              reduce using rule 95 (boolean -> TRUE .)
+    LT              reduce using rule 95 (boolean -> TRUE .)
+    SEMICOLON       reduce using rule 95 (boolean -> TRUE .)
+    AND             reduce using rule 95 (boolean -> TRUE .)
+    OR              reduce using rule 95 (boolean -> TRUE .)
+    RPAREN          reduce using rule 95 (boolean -> TRUE .)
+    COMMA           reduce using rule 95 (boolean -> TRUE .)
+    LBRACE          reduce using rule 95 (boolean -> TRUE .)
+    RBRACKET        reduce using rule 95 (boolean -> TRUE .)
+
+
+state 64
+
+    (96) boolean -> FALSE .
+
+    TIMES           reduce using rule 96 (boolean -> FALSE .)
+    DIVIDE          reduce using rule 96 (boolean -> FALSE .)
+    PLUS            reduce using rule 96 (boolean -> FALSE .)
+    MINUS           reduce using rule 96 (boolean -> FALSE .)
+    EXPONENT        reduce using rule 96 (boolean -> FALSE .)
+    REMAINDER       reduce using rule 96 (boolean -> FALSE .)
+    EQUALS          reduce using rule 96 (boolean -> FALSE .)
+    NOTEQUALS       reduce using rule 96 (boolean -> FALSE .)
+    GE              reduce using rule 96 (boolean -> FALSE .)
+    GT              reduce using rule 96 (boolean -> FALSE .)
+    LE              reduce using rule 96 (boolean -> FALSE .)
+    LT              reduce using rule 96 (boolean -> FALSE .)
+    SEMICOLON       reduce using rule 96 (boolean -> FALSE .)
+    AND             reduce using rule 96 (boolean -> FALSE .)
+    OR              reduce using rule 96 (boolean -> FALSE .)
+    RPAREN          reduce using rule 96 (boolean -> FALSE .)
+    COMMA           reduce using rule 96 (boolean -> FALSE .)
+    LBRACE          reduce using rule 96 (boolean -> FALSE .)
+    RBRACKET        reduce using rule 96 (boolean -> FALSE .)
+
+
+state 65
+
+    (97) int -> INT .
+
+    TIMES           reduce using rule 97 (int -> INT .)
+    DIVIDE          reduce using rule 97 (int -> INT .)
+    PLUS            reduce using rule 97 (int -> INT .)
+    MINUS           reduce using rule 97 (int -> INT .)
+    EXPONENT        reduce using rule 97 (int -> INT .)
+    REMAINDER       reduce using rule 97 (int -> INT .)
+    EQUALS          reduce using rule 97 (int -> INT .)
+    NOTEQUALS       reduce using rule 97 (int -> INT .)
+    GE              reduce using rule 97 (int -> INT .)
+    GT              reduce using rule 97 (int -> INT .)
+    LE              reduce using rule 97 (int -> INT .)
+    LT              reduce using rule 97 (int -> INT .)
+    SEMICOLON       reduce using rule 97 (int -> INT .)
+    AND             reduce using rule 97 (int -> INT .)
+    OR              reduce using rule 97 (int -> INT .)
+    RPAREN          reduce using rule 97 (int -> INT .)
+    COMMA           reduce using rule 97 (int -> INT .)
+    LBRACE          reduce using rule 97 (int -> INT .)
+    RBRACKET        reduce using rule 97 (int -> INT .)
+
+
+state 66
+
+    (98) float -> FLOAT .
+
+    TIMES           reduce using rule 98 (float -> FLOAT .)
+    DIVIDE          reduce using rule 98 (float -> FLOAT .)
+    PLUS            reduce using rule 98 (float -> FLOAT .)
+    MINUS           reduce using rule 98 (float -> FLOAT .)
+    EXPONENT        reduce using rule 98 (float -> FLOAT .)
+    REMAINDER       reduce using rule 98 (float -> FLOAT .)
+    EQUALS          reduce using rule 98 (float -> FLOAT .)
+    NOTEQUALS       reduce using rule 98 (float -> FLOAT .)
+    GE              reduce using rule 98 (float -> FLOAT .)
+    GT              reduce using rule 98 (float -> FLOAT .)
+    LE              reduce using rule 98 (float -> FLOAT .)
+    LT              reduce using rule 98 (float -> FLOAT .)
+    SEMICOLON       reduce using rule 98 (float -> FLOAT .)
+    AND             reduce using rule 98 (float -> FLOAT .)
+    OR              reduce using rule 98 (float -> FLOAT .)
+    RPAREN          reduce using rule 98 (float -> FLOAT .)
+    COMMA           reduce using rule 98 (float -> FLOAT .)
+    LBRACE          reduce using rule 98 (float -> FLOAT .)
+    RBRACKET        reduce using rule 98 (float -> FLOAT .)
+
+
+state 67
+
+    (99) string -> STRING .
+
+    TIMES           reduce using rule 99 (string -> STRING .)
+    DIVIDE          reduce using rule 99 (string -> STRING .)
+    PLUS            reduce using rule 99 (string -> STRING .)
+    MINUS           reduce using rule 99 (string -> STRING .)
+    EXPONENT        reduce using rule 99 (string -> STRING .)
+    REMAINDER       reduce using rule 99 (string -> STRING .)
+    EQUALS          reduce using rule 99 (string -> STRING .)
+    NOTEQUALS       reduce using rule 99 (string -> STRING .)
+    GE              reduce using rule 99 (string -> STRING .)
+    GT              reduce using rule 99 (string -> STRING .)
+    LE              reduce using rule 99 (string -> STRING .)
+    LT              reduce using rule 99 (string -> STRING .)
+    SEMICOLON       reduce using rule 99 (string -> STRING .)
+    AND             reduce using rule 99 (string -> STRING .)
+    OR              reduce using rule 99 (string -> STRING .)
+    RPAREN          reduce using rule 99 (string -> STRING .)
+    COMMA           reduce using rule 99 (string -> STRING .)
+    LBRACE          reduce using rule 99 (string -> STRING .)
+    RBRACKET        reduce using rule 99 (string -> STRING .)
+
+
+state 68
+
+    (100) char -> CHAR .
+
+    TIMES           reduce using rule 100 (char -> CHAR .)
+    DIVIDE          reduce using rule 100 (char -> CHAR .)
+    PLUS            reduce using rule 100 (char -> CHAR .)
+    MINUS           reduce using rule 100 (char -> CHAR .)
+    EXPONENT        reduce using rule 100 (char -> CHAR .)
+    REMAINDER       reduce using rule 100 (char -> CHAR .)
+    EQUALS          reduce using rule 100 (char -> CHAR .)
+    NOTEQUALS       reduce using rule 100 (char -> CHAR .)
+    GE              reduce using rule 100 (char -> CHAR .)
+    GT              reduce using rule 100 (char -> CHAR .)
+    LE              reduce using rule 100 (char -> CHAR .)
+    LT              reduce using rule 100 (char -> CHAR .)
+    SEMICOLON       reduce using rule 100 (char -> CHAR .)
+    AND             reduce using rule 100 (char -> CHAR .)
+    OR              reduce using rule 100 (char -> CHAR .)
+    RPAREN          reduce using rule 100 (char -> CHAR .)
+    COMMA           reduce using rule 100 (char -> CHAR .)
+    LBRACE          reduce using rule 100 (char -> CHAR .)
+    RBRACKET        reduce using rule 100 (char -> CHAR .)
+
+
+state 69
+
+    (101) void -> VOID .
+
+    TIMES           reduce using rule 101 (void -> VOID .)
+    DIVIDE          reduce using rule 101 (void -> VOID .)
+    PLUS            reduce using rule 101 (void -> VOID .)
+    MINUS           reduce using rule 101 (void -> VOID .)
+    EXPONENT        reduce using rule 101 (void -> VOID .)
+    REMAINDER       reduce using rule 101 (void -> VOID .)
+    EQUALS          reduce using rule 101 (void -> VOID .)
+    NOTEQUALS       reduce using rule 101 (void -> VOID .)
+    GE              reduce using rule 101 (void -> VOID .)
+    GT              reduce using rule 101 (void -> VOID .)
+    LE              reduce using rule 101 (void -> VOID .)
+    LT              reduce using rule 101 (void -> VOID .)
+    SEMICOLON       reduce using rule 101 (void -> VOID .)
+    AND             reduce using rule 101 (void -> VOID .)
+    OR              reduce using rule 101 (void -> VOID .)
+    RPAREN          reduce using rule 101 (void -> VOID .)
+    COMMA           reduce using rule 101 (void -> VOID .)
+    LBRACE          reduce using rule 101 (void -> VOID .)
+    RBRACKET        reduce using rule 101 (void -> VOID .)
+
+
+state 70
+
+    (33) type_or_arraytype -> LBRACKET LBRACKET type . RBRACKET RBRACKET
+
+    RBRACKET        shift and go to state 101
+
+
+state 71
+
+    (32) type_or_arraytype -> LBRACKET type RBRACKET .
+
+    ASSIGN          reduce using rule 32 (type_or_arraytype -> LBRACKET type RBRACKET .)
+    SEMICOLON       reduce using rule 32 (type_or_arraytype -> LBRACKET type RBRACKET .)
+    LBRACE          reduce using rule 32 (type_or_arraytype -> LBRACKET type RBRACKET .)
+    COMMA           reduce using rule 32 (type_or_arraytype -> LBRACKET type RBRACKET .)
+    RPAREN          reduce using rule 32 (type_or_arraytype -> LBRACKET type RBRACKET .)
+
+
+state 72
+
+    (11) function_decl -> FUN name LPAREN parameter_list RPAREN return_type . body
+    (17) body -> . LBRACE statement_list RBRACE
+
+    LBRACE          shift and go to state 75
+
+    body                           shift and go to state 73
+
+state 73
+
+    (11) function_decl -> FUN name LPAREN parameter_list RPAREN return_type body .
+
+    FUN             reduce using rule 11 (function_decl -> FUN name LPAREN parameter_list RPAREN return_type body .)
+    $end            reduce using rule 11 (function_decl -> FUN name LPAREN parameter_list RPAREN return_type body .)
+
+
+state 74
+
+    (8) function_init -> FUN name LPAREN parameter_list RPAREN return_type SEMICOLON .
+
+    FUN             reduce using rule 8 (function_init -> FUN name LPAREN parameter_list RPAREN return_type SEMICOLON .)
+    VAR             reduce using rule 8 (function_init -> FUN name LPAREN parameter_list RPAREN return_type SEMICOLON .)
+    VAL             reduce using rule 8 (function_init -> FUN name LPAREN parameter_list RPAREN return_type SEMICOLON .)
+
+
+state 75
+
+    (17) body -> LBRACE . statement_list RBRACE
+    (18) statement_list -> . statement_list statement
+    (19) statement_list -> . statement
+    (20) statement -> . if
+    (21) statement -> . while
+    (22) statement -> . variable_decl
+    (23) statement -> . assignment
+    (24) statement -> . function_call_inline SEMICOLON
+    (25) statement -> . print SEMICOLON
+    (26) statement -> .
+    (27) if -> . IF expression body else
+    (30) while -> . WHILE expression body
+    (14) variable_decl -> . modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON
+    (89) assignment -> . array_call_or_name ASSIGN expression SEMICOLON
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (41) print -> . print_type LPAREN value RPAREN
+    (15) modifier -> . VAR
+    (16) modifier -> . VAL
+    (90) array_call_or_name -> . name
+    (91) array_call_or_name -> . array_call_inline
+    (94) name -> . NAME
+    (42) print_type -> . PRINT_INT
+    (43) print_type -> . PRINT_FLOAT
+    (44) print_type -> . PRINT_ARRAYINT
+    (45) print_type -> . PRINT_ARRAYINT2
+    (46) print_type -> . PRINT_STRING
+    (47) print_type -> . PRINT_CHAR
+    (48) print_type -> . PRINT_BOOLEAN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for VAR resolved as shift
+  ! shift/reduce conflict for VAL resolved as shift
+  ! shift/reduce conflict for NAME resolved as shift
+  ! shift/reduce conflict for PRINT_INT resolved as shift
+  ! shift/reduce conflict for PRINT_FLOAT resolved as shift
+  ! shift/reduce conflict for PRINT_ARRAYINT resolved as shift
+  ! shift/reduce conflict for PRINT_ARRAYINT2 resolved as shift
+  ! shift/reduce conflict for PRINT_STRING resolved as shift
+  ! shift/reduce conflict for PRINT_CHAR resolved as shift
+  ! shift/reduce conflict for PRINT_BOOLEAN resolved as shift
+    RBRACE          reduce using rule 26 (statement -> .)
+    IF              shift and go to state 110
+    WHILE           shift and go to state 111
+    VAR             shift and go to state 10
+    VAL             shift and go to state 11
+    NAME            shift and go to state 17
+    PRINT_INT       shift and go to state 116
+    PRINT_FLOAT     shift and go to state 117
+    PRINT_ARRAYINT  shift and go to state 118
+    PRINT_ARRAYINT2 shift and go to state 119
+    PRINT_STRING    shift and go to state 120
+    PRINT_CHAR      shift and go to state 121
+    PRINT_BOOLEAN   shift and go to state 122
+
+  ! IF              [ reduce using rule 26 (statement -> .) ]
+  ! WHILE           [ reduce using rule 26 (statement -> .) ]
+  ! VAR             [ reduce using rule 26 (statement -> .) ]
+  ! VAL             [ reduce using rule 26 (statement -> .) ]
+  ! NAME            [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_INT       [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_FLOAT     [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_ARRAYINT  [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_ARRAYINT2 [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_STRING    [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_CHAR      [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_BOOLEAN   [ reduce using rule 26 (statement -> .) ]
+
+    statement_list                 shift and go to state 102
+    statement                      shift and go to state 103
+    if                             shift and go to state 104
+    while                          shift and go to state 105
+    variable_decl                  shift and go to state 106
+    assignment                     shift and go to state 107
+    function_call_inline           shift and go to state 108
+    print                          shift and go to state 109
+    modifier                       shift and go to state 9
+    name                           shift and go to state 112
+    array_call_or_name             shift and go to state 113
+    print_type                     shift and go to state 114
+    array_call_inline              shift and go to state 115
+
+state 76
+
+    (12) return_type -> DECLARE type_or_arraytype .
+
+    SEMICOLON       reduce using rule 12 (return_type -> DECLARE type_or_arraytype .)
+    LBRACE          reduce using rule 12 (return_type -> DECLARE type_or_arraytype .)
+
+
+state 77
+
+    (55) parameter -> modifier name DECLARE type_or_arraytype .
+
+    COMMA           reduce using rule 55 (parameter -> modifier name DECLARE type_or_arraytype .)
+    RPAREN          reduce using rule 55 (parameter -> modifier name DECLARE type_or_arraytype .)
+
+
+state 78
+
+    (40) function_call_inline -> name LPAREN . argument_list RPAREN
+    (52) argument_list -> . argument COMMA argument_list
+    (53) argument_list -> . argument
+    (54) argument_list -> .
+    (56) argument -> . expression
+    (57) expression -> . expression and_or expression_m
+    (58) expression -> . expression_m
+    (59) expression_m -> . expression_s
+    (60) expression_m -> . MINUS expression_m
+    (61) expression_m -> . expression_m sign expression_s
+    (62) expression_s -> . value
+    (63) expression_s -> . expression_s psign value
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    RPAREN          reduce using rule 54 (argument_list -> .)
+    MINUS           shift and go to state 51
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    name                           shift and go to state 47
+    argument_list                  shift and go to state 123
+    argument                       shift and go to state 124
+    expression                     shift and go to state 125
+    expression_m                   shift and go to state 49
+    expression_s                   shift and go to state 50
+    value                          shift and go to state 52
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 79
+
+    (92) array_call_inline -> name LBRACKET . value RBRACKET
+    (93) array_call_inline -> name LBRACKET . value RBRACKET LBRACKET value RBRACKET
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    name                           shift and go to state 47
+    value                          shift and go to state 126
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 80
+
+    (14) variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .
+
+    FUN             reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    VAR             reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    VAL             reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    IF              reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    WHILE           reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    NAME            reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    PRINT_INT       reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    PRINT_FLOAT     reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    PRINT_ARRAYINT  reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    PRINT_ARRAYINT2 reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    PRINT_STRING    reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    PRINT_CHAR      reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+    PRINT_BOOLEAN   reduce using rule 14 (variable_decl -> modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON .)
+
+
+state 81
+
+    (57) expression -> expression and_or . expression_m
+    (59) expression_m -> . expression_s
+    (60) expression_m -> . MINUS expression_m
+    (61) expression_m -> . expression_m sign expression_s
+    (62) expression_s -> . value
+    (63) expression_s -> . expression_s psign value
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    MINUS           shift and go to state 51
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    expression_m                   shift and go to state 127
+    expression_s                   shift and go to state 50
+    value                          shift and go to state 52
+    name                           shift and go to state 47
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 82
+
+    (64) and_or -> AND .
+
+    MINUS           reduce using rule 64 (and_or -> AND .)
+    NOT             reduce using rule 64 (and_or -> AND .)
+    LPAREN          reduce using rule 64 (and_or -> AND .)
+    NAME            reduce using rule 64 (and_or -> AND .)
+    TRUE            reduce using rule 64 (and_or -> AND .)
+    FALSE           reduce using rule 64 (and_or -> AND .)
+    INT             reduce using rule 64 (and_or -> AND .)
+    FLOAT           reduce using rule 64 (and_or -> AND .)
+    STRING          reduce using rule 64 (and_or -> AND .)
+    CHAR            reduce using rule 64 (and_or -> AND .)
+    VOID            reduce using rule 64 (and_or -> AND .)
+
+
+state 83
+
+    (65) and_or -> OR .
+
+    MINUS           reduce using rule 65 (and_or -> OR .)
+    NOT             reduce using rule 65 (and_or -> OR .)
+    LPAREN          reduce using rule 65 (and_or -> OR .)
+    NAME            reduce using rule 65 (and_or -> OR .)
+    TRUE            reduce using rule 65 (and_or -> OR .)
+    FALSE           reduce using rule 65 (and_or -> OR .)
+    INT             reduce using rule 65 (and_or -> OR .)
+    FLOAT           reduce using rule 65 (and_or -> OR .)
+    STRING          reduce using rule 65 (and_or -> OR .)
+    CHAR            reduce using rule 65 (and_or -> OR .)
+    VOID            reduce using rule 65 (and_or -> OR .)
+
+
+state 84
+
+    (61) expression_m -> expression_m sign . expression_s
+    (62) expression_s -> . value
+    (63) expression_s -> . expression_s psign value
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    expression_s                   shift and go to state 128
+    value                          shift and go to state 52
+    name                           shift and go to state 47
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 85
+
+    (68) sign -> PLUS .
+
+    NOT             reduce using rule 68 (sign -> PLUS .)
+    LPAREN          reduce using rule 68 (sign -> PLUS .)
+    NAME            reduce using rule 68 (sign -> PLUS .)
+    TRUE            reduce using rule 68 (sign -> PLUS .)
+    FALSE           reduce using rule 68 (sign -> PLUS .)
+    INT             reduce using rule 68 (sign -> PLUS .)
+    FLOAT           reduce using rule 68 (sign -> PLUS .)
+    STRING          reduce using rule 68 (sign -> PLUS .)
+    CHAR            reduce using rule 68 (sign -> PLUS .)
+    VOID            reduce using rule 68 (sign -> PLUS .)
+
+
+state 86
+
+    (69) sign -> MINUS .
+
+    NOT             reduce using rule 69 (sign -> MINUS .)
+    LPAREN          reduce using rule 69 (sign -> MINUS .)
+    NAME            reduce using rule 69 (sign -> MINUS .)
+    TRUE            reduce using rule 69 (sign -> MINUS .)
+    FALSE           reduce using rule 69 (sign -> MINUS .)
+    INT             reduce using rule 69 (sign -> MINUS .)
+    FLOAT           reduce using rule 69 (sign -> MINUS .)
+    STRING          reduce using rule 69 (sign -> MINUS .)
+    CHAR            reduce using rule 69 (sign -> MINUS .)
+    VOID            reduce using rule 69 (sign -> MINUS .)
+
+
+state 87
+
+    (70) sign -> EXPONENT .
+
+    NOT             reduce using rule 70 (sign -> EXPONENT .)
+    LPAREN          reduce using rule 70 (sign -> EXPONENT .)
+    NAME            reduce using rule 70 (sign -> EXPONENT .)
+    TRUE            reduce using rule 70 (sign -> EXPONENT .)
+    FALSE           reduce using rule 70 (sign -> EXPONENT .)
+    INT             reduce using rule 70 (sign -> EXPONENT .)
+    FLOAT           reduce using rule 70 (sign -> EXPONENT .)
+    STRING          reduce using rule 70 (sign -> EXPONENT .)
+    CHAR            reduce using rule 70 (sign -> EXPONENT .)
+    VOID            reduce using rule 70 (sign -> EXPONENT .)
+
+
+state 88
+
+    (71) sign -> REMAINDER .
+
+    NOT             reduce using rule 71 (sign -> REMAINDER .)
+    LPAREN          reduce using rule 71 (sign -> REMAINDER .)
+    NAME            reduce using rule 71 (sign -> REMAINDER .)
+    TRUE            reduce using rule 71 (sign -> REMAINDER .)
+    FALSE           reduce using rule 71 (sign -> REMAINDER .)
+    INT             reduce using rule 71 (sign -> REMAINDER .)
+    FLOAT           reduce using rule 71 (sign -> REMAINDER .)
+    STRING          reduce using rule 71 (sign -> REMAINDER .)
+    CHAR            reduce using rule 71 (sign -> REMAINDER .)
+    VOID            reduce using rule 71 (sign -> REMAINDER .)
+
+
+state 89
+
+    (72) sign -> EQUALS .
+
+    NOT             reduce using rule 72 (sign -> EQUALS .)
+    LPAREN          reduce using rule 72 (sign -> EQUALS .)
+    NAME            reduce using rule 72 (sign -> EQUALS .)
+    TRUE            reduce using rule 72 (sign -> EQUALS .)
+    FALSE           reduce using rule 72 (sign -> EQUALS .)
+    INT             reduce using rule 72 (sign -> EQUALS .)
+    FLOAT           reduce using rule 72 (sign -> EQUALS .)
+    STRING          reduce using rule 72 (sign -> EQUALS .)
+    CHAR            reduce using rule 72 (sign -> EQUALS .)
+    VOID            reduce using rule 72 (sign -> EQUALS .)
+
+
+state 90
+
+    (73) sign -> NOTEQUALS .
+
+    NOT             reduce using rule 73 (sign -> NOTEQUALS .)
+    LPAREN          reduce using rule 73 (sign -> NOTEQUALS .)
+    NAME            reduce using rule 73 (sign -> NOTEQUALS .)
+    TRUE            reduce using rule 73 (sign -> NOTEQUALS .)
+    FALSE           reduce using rule 73 (sign -> NOTEQUALS .)
+    INT             reduce using rule 73 (sign -> NOTEQUALS .)
+    FLOAT           reduce using rule 73 (sign -> NOTEQUALS .)
+    STRING          reduce using rule 73 (sign -> NOTEQUALS .)
+    CHAR            reduce using rule 73 (sign -> NOTEQUALS .)
+    VOID            reduce using rule 73 (sign -> NOTEQUALS .)
+
+
+state 91
+
+    (74) sign -> GE .
+
+    NOT             reduce using rule 74 (sign -> GE .)
+    LPAREN          reduce using rule 74 (sign -> GE .)
+    NAME            reduce using rule 74 (sign -> GE .)
+    TRUE            reduce using rule 74 (sign -> GE .)
+    FALSE           reduce using rule 74 (sign -> GE .)
+    INT             reduce using rule 74 (sign -> GE .)
+    FLOAT           reduce using rule 74 (sign -> GE .)
+    STRING          reduce using rule 74 (sign -> GE .)
+    CHAR            reduce using rule 74 (sign -> GE .)
+    VOID            reduce using rule 74 (sign -> GE .)
+
+
+state 92
+
+    (75) sign -> GT .
+
+    NOT             reduce using rule 75 (sign -> GT .)
+    LPAREN          reduce using rule 75 (sign -> GT .)
+    NAME            reduce using rule 75 (sign -> GT .)
+    TRUE            reduce using rule 75 (sign -> GT .)
+    FALSE           reduce using rule 75 (sign -> GT .)
+    INT             reduce using rule 75 (sign -> GT .)
+    FLOAT           reduce using rule 75 (sign -> GT .)
+    STRING          reduce using rule 75 (sign -> GT .)
+    CHAR            reduce using rule 75 (sign -> GT .)
+    VOID            reduce using rule 75 (sign -> GT .)
+
+
+state 93
+
+    (76) sign -> LE .
+
+    NOT             reduce using rule 76 (sign -> LE .)
+    LPAREN          reduce using rule 76 (sign -> LE .)
+    NAME            reduce using rule 76 (sign -> LE .)
+    TRUE            reduce using rule 76 (sign -> LE .)
+    FALSE           reduce using rule 76 (sign -> LE .)
+    INT             reduce using rule 76 (sign -> LE .)
+    FLOAT           reduce using rule 76 (sign -> LE .)
+    STRING          reduce using rule 76 (sign -> LE .)
+    CHAR            reduce using rule 76 (sign -> LE .)
+    VOID            reduce using rule 76 (sign -> LE .)
+
+
+state 94
+
+    (77) sign -> LT .
+
+    NOT             reduce using rule 77 (sign -> LT .)
+    LPAREN          reduce using rule 77 (sign -> LT .)
+    NAME            reduce using rule 77 (sign -> LT .)
+    TRUE            reduce using rule 77 (sign -> LT .)
+    FALSE           reduce using rule 77 (sign -> LT .)
+    INT             reduce using rule 77 (sign -> LT .)
+    FLOAT           reduce using rule 77 (sign -> LT .)
+    STRING          reduce using rule 77 (sign -> LT .)
+    CHAR            reduce using rule 77 (sign -> LT .)
+    VOID            reduce using rule 77 (sign -> LT .)
+
+
+state 95
+
+    (63) expression_s -> expression_s psign . value
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    value                          shift and go to state 129
+    name                           shift and go to state 47
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 96
+
+    (66) psign -> TIMES .
+
+    NOT             reduce using rule 66 (psign -> TIMES .)
+    LPAREN          reduce using rule 66 (psign -> TIMES .)
+    NAME            reduce using rule 66 (psign -> TIMES .)
+    TRUE            reduce using rule 66 (psign -> TIMES .)
+    FALSE           reduce using rule 66 (psign -> TIMES .)
+    INT             reduce using rule 66 (psign -> TIMES .)
+    FLOAT           reduce using rule 66 (psign -> TIMES .)
+    STRING          reduce using rule 66 (psign -> TIMES .)
+    CHAR            reduce using rule 66 (psign -> TIMES .)
+    VOID            reduce using rule 66 (psign -> TIMES .)
+
+
+state 97
+
+    (67) psign -> DIVIDE .
+
+    NOT             reduce using rule 67 (psign -> DIVIDE .)
+    LPAREN          reduce using rule 67 (psign -> DIVIDE .)
+    NAME            reduce using rule 67 (psign -> DIVIDE .)
+    TRUE            reduce using rule 67 (psign -> DIVIDE .)
+    FALSE           reduce using rule 67 (psign -> DIVIDE .)
+    INT             reduce using rule 67 (psign -> DIVIDE .)
+    FLOAT           reduce using rule 67 (psign -> DIVIDE .)
+    STRING          reduce using rule 67 (psign -> DIVIDE .)
+    CHAR            reduce using rule 67 (psign -> DIVIDE .)
+    VOID            reduce using rule 67 (psign -> DIVIDE .)
+
+
+state 98
+
+    (60) expression_m -> MINUS expression_m .
+    (61) expression_m -> expression_m . sign expression_s
+    (68) sign -> . PLUS
+    (69) sign -> . MINUS
+    (70) sign -> . EXPONENT
+    (71) sign -> . REMAINDER
+    (72) sign -> . EQUALS
+    (73) sign -> . NOTEQUALS
+    (74) sign -> . GE
+    (75) sign -> . GT
+    (76) sign -> . LE
+    (77) sign -> . LT
+
+    PLUS            reduce using rule 60 (expression_m -> MINUS expression_m .)
+    MINUS           reduce using rule 60 (expression_m -> MINUS expression_m .)
+    EXPONENT        reduce using rule 60 (expression_m -> MINUS expression_m .)
+    REMAINDER       reduce using rule 60 (expression_m -> MINUS expression_m .)
+    SEMICOLON       reduce using rule 60 (expression_m -> MINUS expression_m .)
+    AND             reduce using rule 60 (expression_m -> MINUS expression_m .)
+    OR              reduce using rule 60 (expression_m -> MINUS expression_m .)
+    RPAREN          reduce using rule 60 (expression_m -> MINUS expression_m .)
+    COMMA           reduce using rule 60 (expression_m -> MINUS expression_m .)
+    LBRACE          reduce using rule 60 (expression_m -> MINUS expression_m .)
+    EQUALS          shift and go to state 89
+    NOTEQUALS       shift and go to state 90
+    GE              shift and go to state 91
+    GT              shift and go to state 92
+    LE              shift and go to state 93
+    LT              shift and go to state 94
+
+  ! EQUALS          [ reduce using rule 60 (expression_m -> MINUS expression_m .) ]
+  ! NOTEQUALS       [ reduce using rule 60 (expression_m -> MINUS expression_m .) ]
+  ! GE              [ reduce using rule 60 (expression_m -> MINUS expression_m .) ]
+  ! GT              [ reduce using rule 60 (expression_m -> MINUS expression_m .) ]
+  ! LE              [ reduce using rule 60 (expression_m -> MINUS expression_m .) ]
+  ! LT              [ reduce using rule 60 (expression_m -> MINUS expression_m .) ]
+  ! PLUS            [ shift and go to state 85 ]
+  ! MINUS           [ shift and go to state 86 ]
+  ! EXPONENT        [ shift and go to state 87 ]
+  ! REMAINDER       [ shift and go to state 88 ]
+
+    sign                           shift and go to state 84
+
+state 99
+
+    (87) value -> NOT name .
+
+    TIMES           reduce using rule 87 (value -> NOT name .)
+    DIVIDE          reduce using rule 87 (value -> NOT name .)
+    PLUS            reduce using rule 87 (value -> NOT name .)
+    MINUS           reduce using rule 87 (value -> NOT name .)
+    EXPONENT        reduce using rule 87 (value -> NOT name .)
+    REMAINDER       reduce using rule 87 (value -> NOT name .)
+    EQUALS          reduce using rule 87 (value -> NOT name .)
+    NOTEQUALS       reduce using rule 87 (value -> NOT name .)
+    GE              reduce using rule 87 (value -> NOT name .)
+    GT              reduce using rule 87 (value -> NOT name .)
+    LE              reduce using rule 87 (value -> NOT name .)
+    LT              reduce using rule 87 (value -> NOT name .)
+    SEMICOLON       reduce using rule 87 (value -> NOT name .)
+    AND             reduce using rule 87 (value -> NOT name .)
+    OR              reduce using rule 87 (value -> NOT name .)
+    RPAREN          reduce using rule 87 (value -> NOT name .)
+    COMMA           reduce using rule 87 (value -> NOT name .)
+    LBRACE          reduce using rule 87 (value -> NOT name .)
+    RBRACKET        reduce using rule 87 (value -> NOT name .)
+
+
+state 100
+
+    (88) value -> LPAREN expression . RPAREN
+    (57) expression -> expression . and_or expression_m
+    (64) and_or -> . AND
+    (65) and_or -> . OR
+
+    RPAREN          shift and go to state 130
+    AND             shift and go to state 82
+    OR              shift and go to state 83
+
+    and_or                         shift and go to state 81
+
+state 101
+
+    (33) type_or_arraytype -> LBRACKET LBRACKET type RBRACKET . RBRACKET
+
+    RBRACKET        shift and go to state 131
+
+
+state 102
+
+    (17) body -> LBRACE statement_list . RBRACE
+    (18) statement_list -> statement_list . statement
+    (20) statement -> . if
+    (21) statement -> . while
+    (22) statement -> . variable_decl
+    (23) statement -> . assignment
+    (24) statement -> . function_call_inline SEMICOLON
+    (25) statement -> . print SEMICOLON
+    (26) statement -> .
+    (27) if -> . IF expression body else
+    (30) while -> . WHILE expression body
+    (14) variable_decl -> . modifier name DECLARE type_or_arraytype ASSIGN expression SEMICOLON
+    (89) assignment -> . array_call_or_name ASSIGN expression SEMICOLON
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (41) print -> . print_type LPAREN value RPAREN
+    (15) modifier -> . VAR
+    (16) modifier -> . VAL
+    (90) array_call_or_name -> . name
+    (91) array_call_or_name -> . array_call_inline
+    (94) name -> . NAME
+    (42) print_type -> . PRINT_INT
+    (43) print_type -> . PRINT_FLOAT
+    (44) print_type -> . PRINT_ARRAYINT
+    (45) print_type -> . PRINT_ARRAYINT2
+    (46) print_type -> . PRINT_STRING
+    (47) print_type -> . PRINT_CHAR
+    (48) print_type -> . PRINT_BOOLEAN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+  ! shift/reduce conflict for RBRACE resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for VAR resolved as shift
+  ! shift/reduce conflict for VAL resolved as shift
+  ! shift/reduce conflict for NAME resolved as shift
+  ! shift/reduce conflict for PRINT_INT resolved as shift
+  ! shift/reduce conflict for PRINT_FLOAT resolved as shift
+  ! shift/reduce conflict for PRINT_ARRAYINT resolved as shift
+  ! shift/reduce conflict for PRINT_ARRAYINT2 resolved as shift
+  ! shift/reduce conflict for PRINT_STRING resolved as shift
+  ! shift/reduce conflict for PRINT_CHAR resolved as shift
+  ! shift/reduce conflict for PRINT_BOOLEAN resolved as shift
+    RBRACE          shift and go to state 132
+    IF              shift and go to state 110
+    WHILE           shift and go to state 111
+    VAR             shift and go to state 10
+    VAL             shift and go to state 11
+    NAME            shift and go to state 17
+    PRINT_INT       shift and go to state 116
+    PRINT_FLOAT     shift and go to state 117
+    PRINT_ARRAYINT  shift and go to state 118
+    PRINT_ARRAYINT2 shift and go to state 119
+    PRINT_STRING    shift and go to state 120
+    PRINT_CHAR      shift and go to state 121
+    PRINT_BOOLEAN   shift and go to state 122
+
+  ! RBRACE          [ reduce using rule 26 (statement -> .) ]
+  ! IF              [ reduce using rule 26 (statement -> .) ]
+  ! WHILE           [ reduce using rule 26 (statement -> .) ]
+  ! VAR             [ reduce using rule 26 (statement -> .) ]
+  ! VAL             [ reduce using rule 26 (statement -> .) ]
+  ! NAME            [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_INT       [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_FLOAT     [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_ARRAYINT  [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_ARRAYINT2 [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_STRING    [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_CHAR      [ reduce using rule 26 (statement -> .) ]
+  ! PRINT_BOOLEAN   [ reduce using rule 26 (statement -> .) ]
+
+    statement                      shift and go to state 133
+    if                             shift and go to state 104
+    while                          shift and go to state 105
+    variable_decl                  shift and go to state 106
+    assignment                     shift and go to state 107
+    function_call_inline           shift and go to state 108
+    print                          shift and go to state 109
+    modifier                       shift and go to state 9
+    name                           shift and go to state 112
+    array_call_or_name             shift and go to state 113
+    print_type                     shift and go to state 114
+    array_call_inline              shift and go to state 115
+
+state 103
+
+    (19) statement_list -> statement .
+
+    RBRACE          reduce using rule 19 (statement_list -> statement .)
+    IF              reduce using rule 19 (statement_list -> statement .)
+    WHILE           reduce using rule 19 (statement_list -> statement .)
+    VAR             reduce using rule 19 (statement_list -> statement .)
+    VAL             reduce using rule 19 (statement_list -> statement .)
+    NAME            reduce using rule 19 (statement_list -> statement .)
+    PRINT_INT       reduce using rule 19 (statement_list -> statement .)
+    PRINT_FLOAT     reduce using rule 19 (statement_list -> statement .)
+    PRINT_ARRAYINT  reduce using rule 19 (statement_list -> statement .)
+    PRINT_ARRAYINT2 reduce using rule 19 (statement_list -> statement .)
+    PRINT_STRING    reduce using rule 19 (statement_list -> statement .)
+    PRINT_CHAR      reduce using rule 19 (statement_list -> statement .)
+    PRINT_BOOLEAN   reduce using rule 19 (statement_list -> statement .)
+
+
+state 104
+
+    (20) statement -> if .
+
+    RBRACE          reduce using rule 20 (statement -> if .)
+    IF              reduce using rule 20 (statement -> if .)
+    WHILE           reduce using rule 20 (statement -> if .)
+    VAR             reduce using rule 20 (statement -> if .)
+    VAL             reduce using rule 20 (statement -> if .)
+    NAME            reduce using rule 20 (statement -> if .)
+    PRINT_INT       reduce using rule 20 (statement -> if .)
+    PRINT_FLOAT     reduce using rule 20 (statement -> if .)
+    PRINT_ARRAYINT  reduce using rule 20 (statement -> if .)
+    PRINT_ARRAYINT2 reduce using rule 20 (statement -> if .)
+    PRINT_STRING    reduce using rule 20 (statement -> if .)
+    PRINT_CHAR      reduce using rule 20 (statement -> if .)
+    PRINT_BOOLEAN   reduce using rule 20 (statement -> if .)
+
+
+state 105
+
+    (21) statement -> while .
+
+    RBRACE          reduce using rule 21 (statement -> while .)
+    IF              reduce using rule 21 (statement -> while .)
+    WHILE           reduce using rule 21 (statement -> while .)
+    VAR             reduce using rule 21 (statement -> while .)
+    VAL             reduce using rule 21 (statement -> while .)
+    NAME            reduce using rule 21 (statement -> while .)
+    PRINT_INT       reduce using rule 21 (statement -> while .)
+    PRINT_FLOAT     reduce using rule 21 (statement -> while .)
+    PRINT_ARRAYINT  reduce using rule 21 (statement -> while .)
+    PRINT_ARRAYINT2 reduce using rule 21 (statement -> while .)
+    PRINT_STRING    reduce using rule 21 (statement -> while .)
+    PRINT_CHAR      reduce using rule 21 (statement -> while .)
+    PRINT_BOOLEAN   reduce using rule 21 (statement -> while .)
+
+
+state 106
+
+    (22) statement -> variable_decl .
+
+    RBRACE          reduce using rule 22 (statement -> variable_decl .)
+    IF              reduce using rule 22 (statement -> variable_decl .)
+    WHILE           reduce using rule 22 (statement -> variable_decl .)
+    VAR             reduce using rule 22 (statement -> variable_decl .)
+    VAL             reduce using rule 22 (statement -> variable_decl .)
+    NAME            reduce using rule 22 (statement -> variable_decl .)
+    PRINT_INT       reduce using rule 22 (statement -> variable_decl .)
+    PRINT_FLOAT     reduce using rule 22 (statement -> variable_decl .)
+    PRINT_ARRAYINT  reduce using rule 22 (statement -> variable_decl .)
+    PRINT_ARRAYINT2 reduce using rule 22 (statement -> variable_decl .)
+    PRINT_STRING    reduce using rule 22 (statement -> variable_decl .)
+    PRINT_CHAR      reduce using rule 22 (statement -> variable_decl .)
+    PRINT_BOOLEAN   reduce using rule 22 (statement -> variable_decl .)
+
+
+state 107
+
+    (23) statement -> assignment .
+
+    RBRACE          reduce using rule 23 (statement -> assignment .)
+    IF              reduce using rule 23 (statement -> assignment .)
+    WHILE           reduce using rule 23 (statement -> assignment .)
+    VAR             reduce using rule 23 (statement -> assignment .)
+    VAL             reduce using rule 23 (statement -> assignment .)
+    NAME            reduce using rule 23 (statement -> assignment .)
+    PRINT_INT       reduce using rule 23 (statement -> assignment .)
+    PRINT_FLOAT     reduce using rule 23 (statement -> assignment .)
+    PRINT_ARRAYINT  reduce using rule 23 (statement -> assignment .)
+    PRINT_ARRAYINT2 reduce using rule 23 (statement -> assignment .)
+    PRINT_STRING    reduce using rule 23 (statement -> assignment .)
+    PRINT_CHAR      reduce using rule 23 (statement -> assignment .)
+    PRINT_BOOLEAN   reduce using rule 23 (statement -> assignment .)
+
+
+state 108
+
+    (24) statement -> function_call_inline . SEMICOLON
+
+    SEMICOLON       shift and go to state 134
+
+
+state 109
+
+    (25) statement -> print . SEMICOLON
+
+    SEMICOLON       shift and go to state 135
+
+
+state 110
+
+    (27) if -> IF . expression body else
+    (57) expression -> . expression and_or expression_m
+    (58) expression -> . expression_m
+    (59) expression_m -> . expression_s
+    (60) expression_m -> . MINUS expression_m
+    (61) expression_m -> . expression_m sign expression_s
+    (62) expression_s -> . value
+    (63) expression_s -> . expression_s psign value
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    MINUS           shift and go to state 51
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    expression                     shift and go to state 136
+    expression_m                   shift and go to state 49
+    expression_s                   shift and go to state 50
+    value                          shift and go to state 52
+    name                           shift and go to state 47
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 111
+
+    (30) while -> WHILE . expression body
+    (57) expression -> . expression and_or expression_m
+    (58) expression -> . expression_m
+    (59) expression_m -> . expression_s
+    (60) expression_m -> . MINUS expression_m
+    (61) expression_m -> . expression_m sign expression_s
+    (62) expression_s -> . value
+    (63) expression_s -> . expression_s psign value
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    MINUS           shift and go to state 51
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    expression                     shift and go to state 137
+    expression_m                   shift and go to state 49
+    expression_s                   shift and go to state 50
+    value                          shift and go to state 52
+    name                           shift and go to state 47
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 112
+
+    (40) function_call_inline -> name . LPAREN argument_list RPAREN
+    (90) array_call_or_name -> name .
+    (92) array_call_inline -> name . LBRACKET value RBRACKET
+    (93) array_call_inline -> name . LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    LPAREN          shift and go to state 78
+    ASSIGN          reduce using rule 90 (array_call_or_name -> name .)
+    LBRACKET        shift and go to state 79
+
+
+state 113
+
+    (89) assignment -> array_call_or_name . ASSIGN expression SEMICOLON
+
+    ASSIGN          shift and go to state 138
+
+
+state 114
+
+    (41) print -> print_type . LPAREN value RPAREN
+
+    LPAREN          shift and go to state 139
+
+
+state 115
+
+    (91) array_call_or_name -> array_call_inline .
+
+    ASSIGN          reduce using rule 91 (array_call_or_name -> array_call_inline .)
+
+
+state 116
+
+    (42) print_type -> PRINT_INT .
+
+    LPAREN          reduce using rule 42 (print_type -> PRINT_INT .)
+
+
+state 117
+
+    (43) print_type -> PRINT_FLOAT .
+
+    LPAREN          reduce using rule 43 (print_type -> PRINT_FLOAT .)
+
+
+state 118
+
+    (44) print_type -> PRINT_ARRAYINT .
+
+    LPAREN          reduce using rule 44 (print_type -> PRINT_ARRAYINT .)
+
+
+state 119
+
+    (45) print_type -> PRINT_ARRAYINT2 .
+
+    LPAREN          reduce using rule 45 (print_type -> PRINT_ARRAYINT2 .)
+
+
+state 120
+
+    (46) print_type -> PRINT_STRING .
+
+    LPAREN          reduce using rule 46 (print_type -> PRINT_STRING .)
+
+
+state 121
+
+    (47) print_type -> PRINT_CHAR .
+
+    LPAREN          reduce using rule 47 (print_type -> PRINT_CHAR .)
+
+
+state 122
+
+    (48) print_type -> PRINT_BOOLEAN .
+
+    LPAREN          reduce using rule 48 (print_type -> PRINT_BOOLEAN .)
+
+
+state 123
+
+    (40) function_call_inline -> name LPAREN argument_list . RPAREN
+
+    RPAREN          shift and go to state 140
+
+
+state 124
+
+    (52) argument_list -> argument . COMMA argument_list
+    (53) argument_list -> argument .
+
+    COMMA           shift and go to state 141
+    RPAREN          reduce using rule 53 (argument_list -> argument .)
+
+
+state 125
+
+    (56) argument -> expression .
+    (57) expression -> expression . and_or expression_m
+    (64) and_or -> . AND
+    (65) and_or -> . OR
+
+    COMMA           reduce using rule 56 (argument -> expression .)
+    RPAREN          reduce using rule 56 (argument -> expression .)
+    AND             shift and go to state 82
+    OR              shift and go to state 83
+
+    and_or                         shift and go to state 81
+
+state 126
+
+    (92) array_call_inline -> name LBRACKET value . RBRACKET
+    (93) array_call_inline -> name LBRACKET value . RBRACKET LBRACKET value RBRACKET
+
+    RBRACKET        shift and go to state 142
+
+
+state 127
+
+    (57) expression -> expression and_or expression_m .
+    (61) expression_m -> expression_m . sign expression_s
+    (68) sign -> . PLUS
+    (69) sign -> . MINUS
+    (70) sign -> . EXPONENT
+    (71) sign -> . REMAINDER
+    (72) sign -> . EQUALS
+    (73) sign -> . NOTEQUALS
+    (74) sign -> . GE
+    (75) sign -> . GT
+    (76) sign -> . LE
+    (77) sign -> . LT
+
+    SEMICOLON       reduce using rule 57 (expression -> expression and_or expression_m .)
+    AND             reduce using rule 57 (expression -> expression and_or expression_m .)
+    OR              reduce using rule 57 (expression -> expression and_or expression_m .)
+    RPAREN          reduce using rule 57 (expression -> expression and_or expression_m .)
+    COMMA           reduce using rule 57 (expression -> expression and_or expression_m .)
+    LBRACE          reduce using rule 57 (expression -> expression and_or expression_m .)
+    PLUS            shift and go to state 85
+    MINUS           shift and go to state 86
+    EXPONENT        shift and go to state 87
+    REMAINDER       shift and go to state 88
+    EQUALS          shift and go to state 89
+    NOTEQUALS       shift and go to state 90
+    GE              shift and go to state 91
+    GT              shift and go to state 92
+    LE              shift and go to state 93
+    LT              shift and go to state 94
+
+    sign                           shift and go to state 84
+
+state 128
+
+    (61) expression_m -> expression_m sign expression_s .
+    (63) expression_s -> expression_s . psign value
+    (66) psign -> . TIMES
+    (67) psign -> . DIVIDE
+
+    PLUS            reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    MINUS           reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    EXPONENT        reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    REMAINDER       reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    EQUALS          reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    NOTEQUALS       reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    GE              reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    GT              reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    LE              reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    LT              reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    SEMICOLON       reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    AND             reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    OR              reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    RPAREN          reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    COMMA           reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    LBRACE          reduce using rule 61 (expression_m -> expression_m sign expression_s .)
+    TIMES           shift and go to state 96
+    DIVIDE          shift and go to state 97
+
+    psign                          shift and go to state 95
+
+state 129
+
+    (63) expression_s -> expression_s psign value .
+
+    TIMES           reduce using rule 63 (expression_s -> expression_s psign value .)
+    DIVIDE          reduce using rule 63 (expression_s -> expression_s psign value .)
+    PLUS            reduce using rule 63 (expression_s -> expression_s psign value .)
+    MINUS           reduce using rule 63 (expression_s -> expression_s psign value .)
+    EXPONENT        reduce using rule 63 (expression_s -> expression_s psign value .)
+    REMAINDER       reduce using rule 63 (expression_s -> expression_s psign value .)
+    EQUALS          reduce using rule 63 (expression_s -> expression_s psign value .)
+    NOTEQUALS       reduce using rule 63 (expression_s -> expression_s psign value .)
+    GE              reduce using rule 63 (expression_s -> expression_s psign value .)
+    GT              reduce using rule 63 (expression_s -> expression_s psign value .)
+    LE              reduce using rule 63 (expression_s -> expression_s psign value .)
+    LT              reduce using rule 63 (expression_s -> expression_s psign value .)
+    SEMICOLON       reduce using rule 63 (expression_s -> expression_s psign value .)
+    AND             reduce using rule 63 (expression_s -> expression_s psign value .)
+    OR              reduce using rule 63 (expression_s -> expression_s psign value .)
+    RPAREN          reduce using rule 63 (expression_s -> expression_s psign value .)
+    COMMA           reduce using rule 63 (expression_s -> expression_s psign value .)
+    LBRACE          reduce using rule 63 (expression_s -> expression_s psign value .)
+
+
+state 130
+
+    (88) value -> LPAREN expression RPAREN .
+
+    TIMES           reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    EXPONENT        reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    REMAINDER       reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    EQUALS          reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    NOTEQUALS       reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    GE              reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    GT              reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    LE              reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    LT              reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    AND             reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    OR              reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    LBRACE          reduce using rule 88 (value -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 88 (value -> LPAREN expression RPAREN .)
+
+
+state 131
+
+    (33) type_or_arraytype -> LBRACKET LBRACKET type RBRACKET RBRACKET .
+
+    ASSIGN          reduce using rule 33 (type_or_arraytype -> LBRACKET LBRACKET type RBRACKET RBRACKET .)
+    SEMICOLON       reduce using rule 33 (type_or_arraytype -> LBRACKET LBRACKET type RBRACKET RBRACKET .)
+    LBRACE          reduce using rule 33 (type_or_arraytype -> LBRACKET LBRACKET type RBRACKET RBRACKET .)
+    COMMA           reduce using rule 33 (type_or_arraytype -> LBRACKET LBRACKET type RBRACKET RBRACKET .)
+    RPAREN          reduce using rule 33 (type_or_arraytype -> LBRACKET LBRACKET type RBRACKET RBRACKET .)
+
+
+state 132
+
+    (17) body -> LBRACE statement_list RBRACE .
+
+    FUN             reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    $end            reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    ELSE            reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    RBRACE          reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    IF              reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    WHILE           reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    VAR             reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    VAL             reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    NAME            reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    PRINT_INT       reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    PRINT_FLOAT     reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    PRINT_ARRAYINT  reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    PRINT_ARRAYINT2 reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    PRINT_STRING    reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    PRINT_CHAR      reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+    PRINT_BOOLEAN   reduce using rule 17 (body -> LBRACE statement_list RBRACE .)
+
+
+state 133
+
+    (18) statement_list -> statement_list statement .
+
+    RBRACE          reduce using rule 18 (statement_list -> statement_list statement .)
+    IF              reduce using rule 18 (statement_list -> statement_list statement .)
+    WHILE           reduce using rule 18 (statement_list -> statement_list statement .)
+    VAR             reduce using rule 18 (statement_list -> statement_list statement .)
+    VAL             reduce using rule 18 (statement_list -> statement_list statement .)
+    NAME            reduce using rule 18 (statement_list -> statement_list statement .)
+    PRINT_INT       reduce using rule 18 (statement_list -> statement_list statement .)
+    PRINT_FLOAT     reduce using rule 18 (statement_list -> statement_list statement .)
+    PRINT_ARRAYINT  reduce using rule 18 (statement_list -> statement_list statement .)
+    PRINT_ARRAYINT2 reduce using rule 18 (statement_list -> statement_list statement .)
+    PRINT_STRING    reduce using rule 18 (statement_list -> statement_list statement .)
+    PRINT_CHAR      reduce using rule 18 (statement_list -> statement_list statement .)
+    PRINT_BOOLEAN   reduce using rule 18 (statement_list -> statement_list statement .)
+
+
+state 134
+
+    (24) statement -> function_call_inline SEMICOLON .
+
+    RBRACE          reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    IF              reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    WHILE           reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    VAR             reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    VAL             reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    NAME            reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    PRINT_INT       reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    PRINT_FLOAT     reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    PRINT_ARRAYINT  reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    PRINT_ARRAYINT2 reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    PRINT_STRING    reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    PRINT_CHAR      reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+    PRINT_BOOLEAN   reduce using rule 24 (statement -> function_call_inline SEMICOLON .)
+
+
+state 135
+
+    (25) statement -> print SEMICOLON .
+
+    RBRACE          reduce using rule 25 (statement -> print SEMICOLON .)
+    IF              reduce using rule 25 (statement -> print SEMICOLON .)
+    WHILE           reduce using rule 25 (statement -> print SEMICOLON .)
+    VAR             reduce using rule 25 (statement -> print SEMICOLON .)
+    VAL             reduce using rule 25 (statement -> print SEMICOLON .)
+    NAME            reduce using rule 25 (statement -> print SEMICOLON .)
+    PRINT_INT       reduce using rule 25 (statement -> print SEMICOLON .)
+    PRINT_FLOAT     reduce using rule 25 (statement -> print SEMICOLON .)
+    PRINT_ARRAYINT  reduce using rule 25 (statement -> print SEMICOLON .)
+    PRINT_ARRAYINT2 reduce using rule 25 (statement -> print SEMICOLON .)
+    PRINT_STRING    reduce using rule 25 (statement -> print SEMICOLON .)
+    PRINT_CHAR      reduce using rule 25 (statement -> print SEMICOLON .)
+    PRINT_BOOLEAN   reduce using rule 25 (statement -> print SEMICOLON .)
+
+
+state 136
+
+    (27) if -> IF expression . body else
+    (57) expression -> expression . and_or expression_m
+    (17) body -> . LBRACE statement_list RBRACE
+    (64) and_or -> . AND
+    (65) and_or -> . OR
+
+    LBRACE          shift and go to state 75
+    AND             shift and go to state 82
+    OR              shift and go to state 83
+
+    body                           shift and go to state 143
+    and_or                         shift and go to state 81
+
+state 137
+
+    (30) while -> WHILE expression . body
+    (57) expression -> expression . and_or expression_m
+    (17) body -> . LBRACE statement_list RBRACE
+    (64) and_or -> . AND
+    (65) and_or -> . OR
+
+    LBRACE          shift and go to state 75
+    AND             shift and go to state 82
+    OR              shift and go to state 83
+
+    body                           shift and go to state 144
+    and_or                         shift and go to state 81
+
+state 138
+
+    (89) assignment -> array_call_or_name ASSIGN . expression SEMICOLON
+    (57) expression -> . expression and_or expression_m
+    (58) expression -> . expression_m
+    (59) expression_m -> . expression_s
+    (60) expression_m -> . MINUS expression_m
+    (61) expression_m -> . expression_m sign expression_s
+    (62) expression_s -> . value
+    (63) expression_s -> . expression_s psign value
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    MINUS           shift and go to state 51
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    expression                     shift and go to state 145
+    expression_m                   shift and go to state 49
+    expression_s                   shift and go to state 50
+    value                          shift and go to state 52
+    name                           shift and go to state 47
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 139
+
+    (41) print -> print_type LPAREN . value RPAREN
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    value                          shift and go to state 146
+    name                           shift and go to state 47
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 140
+
+    (40) function_call_inline -> name LPAREN argument_list RPAREN .
+
+    TIMES           reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    DIVIDE          reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    PLUS            reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    MINUS           reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    EXPONENT        reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    REMAINDER       reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    EQUALS          reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    NOTEQUALS       reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    GE              reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    GT              reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    LE              reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    LT              reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    SEMICOLON       reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    AND             reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    OR              reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    RPAREN          reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    COMMA           reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    LBRACE          reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+    RBRACKET        reduce using rule 40 (function_call_inline -> name LPAREN argument_list RPAREN .)
+
+
+state 141
+
+    (52) argument_list -> argument COMMA . argument_list
+    (52) argument_list -> . argument COMMA argument_list
+    (53) argument_list -> . argument
+    (54) argument_list -> .
+    (56) argument -> . expression
+    (57) expression -> . expression and_or expression_m
+    (58) expression -> . expression_m
+    (59) expression_m -> . expression_s
+    (60) expression_m -> . MINUS expression_m
+    (61) expression_m -> . expression_m sign expression_s
+    (62) expression_s -> . value
+    (63) expression_s -> . expression_s psign value
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    RPAREN          reduce using rule 54 (argument_list -> .)
+    MINUS           shift and go to state 51
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    argument                       shift and go to state 124
+    argument_list                  shift and go to state 147
+    expression                     shift and go to state 125
+    expression_m                   shift and go to state 49
+    expression_s                   shift and go to state 50
+    value                          shift and go to state 52
+    name                           shift and go to state 47
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 142
+
+    (92) array_call_inline -> name LBRACKET value RBRACKET .
+    (93) array_call_inline -> name LBRACKET value RBRACKET . LBRACKET value RBRACKET
+
+    TIMES           reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    DIVIDE          reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    PLUS            reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    MINUS           reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    EXPONENT        reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    REMAINDER       reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    EQUALS          reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    NOTEQUALS       reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    GE              reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    GT              reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    LE              reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    LT              reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    SEMICOLON       reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    AND             reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    OR              reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    RPAREN          reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    COMMA           reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    LBRACE          reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    ASSIGN          reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    RBRACKET        reduce using rule 92 (array_call_inline -> name LBRACKET value RBRACKET .)
+    LBRACKET        shift and go to state 148
+
+
+state 143
+
+    (27) if -> IF expression body . else
+    (28) else -> . ELSE body
+    (29) else -> .
+
+    ELSE            shift and go to state 150
+    RBRACE          reduce using rule 29 (else -> .)
+    IF              reduce using rule 29 (else -> .)
+    WHILE           reduce using rule 29 (else -> .)
+    VAR             reduce using rule 29 (else -> .)
+    VAL             reduce using rule 29 (else -> .)
+    NAME            reduce using rule 29 (else -> .)
+    PRINT_INT       reduce using rule 29 (else -> .)
+    PRINT_FLOAT     reduce using rule 29 (else -> .)
+    PRINT_ARRAYINT  reduce using rule 29 (else -> .)
+    PRINT_ARRAYINT2 reduce using rule 29 (else -> .)
+    PRINT_STRING    reduce using rule 29 (else -> .)
+    PRINT_CHAR      reduce using rule 29 (else -> .)
+    PRINT_BOOLEAN   reduce using rule 29 (else -> .)
+
+    else                           shift and go to state 149
+
+state 144
+
+    (30) while -> WHILE expression body .
+
+    RBRACE          reduce using rule 30 (while -> WHILE expression body .)
+    IF              reduce using rule 30 (while -> WHILE expression body .)
+    WHILE           reduce using rule 30 (while -> WHILE expression body .)
+    VAR             reduce using rule 30 (while -> WHILE expression body .)
+    VAL             reduce using rule 30 (while -> WHILE expression body .)
+    NAME            reduce using rule 30 (while -> WHILE expression body .)
+    PRINT_INT       reduce using rule 30 (while -> WHILE expression body .)
+    PRINT_FLOAT     reduce using rule 30 (while -> WHILE expression body .)
+    PRINT_ARRAYINT  reduce using rule 30 (while -> WHILE expression body .)
+    PRINT_ARRAYINT2 reduce using rule 30 (while -> WHILE expression body .)
+    PRINT_STRING    reduce using rule 30 (while -> WHILE expression body .)
+    PRINT_CHAR      reduce using rule 30 (while -> WHILE expression body .)
+    PRINT_BOOLEAN   reduce using rule 30 (while -> WHILE expression body .)
+
+
+state 145
+
+    (89) assignment -> array_call_or_name ASSIGN expression . SEMICOLON
+    (57) expression -> expression . and_or expression_m
+    (64) and_or -> . AND
+    (65) and_or -> . OR
+
+    SEMICOLON       shift and go to state 151
+    AND             shift and go to state 82
+    OR              shift and go to state 83
+
+    and_or                         shift and go to state 81
+
+state 146
+
+    (41) print -> print_type LPAREN value . RPAREN
+
+    RPAREN          shift and go to state 152
+
+
+state 147
+
+    (52) argument_list -> argument COMMA argument_list .
+
+    RPAREN          reduce using rule 52 (argument_list -> argument COMMA argument_list .)
+
+
+state 148
+
+    (93) array_call_inline -> name LBRACKET value RBRACKET LBRACKET . value RBRACKET
+    (78) value -> . name
+    (79) value -> . boolean
+    (80) value -> . int
+    (81) value -> . float
+    (82) value -> . string
+    (83) value -> . char
+    (84) value -> . void
+    (85) value -> . function_call_inline
+    (86) value -> . array_call_inline
+    (87) value -> . NOT name
+    (88) value -> . LPAREN expression RPAREN
+    (94) name -> . NAME
+    (95) boolean -> . TRUE
+    (96) boolean -> . FALSE
+    (97) int -> . INT
+    (98) float -> . FLOAT
+    (99) string -> . STRING
+    (100) char -> . CHAR
+    (101) void -> . VOID
+    (40) function_call_inline -> . name LPAREN argument_list RPAREN
+    (92) array_call_inline -> . name LBRACKET value RBRACKET
+    (93) array_call_inline -> . name LBRACKET value RBRACKET LBRACKET value RBRACKET
+
+    NOT             shift and go to state 61
+    LPAREN          shift and go to state 62
+    NAME            shift and go to state 17
+    TRUE            shift and go to state 63
+    FALSE           shift and go to state 64
+    INT             shift and go to state 65
+    FLOAT           shift and go to state 66
+    STRING          shift and go to state 67
+    CHAR            shift and go to state 68
+    VOID            shift and go to state 69
+
+    name                           shift and go to state 47
+    value                          shift and go to state 153
+    boolean                        shift and go to state 53
+    int                            shift and go to state 54
+    float                          shift and go to state 55
+    string                         shift and go to state 56
+    char                           shift and go to state 57
+    void                           shift and go to state 58
+    function_call_inline           shift and go to state 59
+    array_call_inline              shift and go to state 60
+
+state 149
+
+    (27) if -> IF expression body else .
+
+    RBRACE          reduce using rule 27 (if -> IF expression body else .)
+    IF              reduce using rule 27 (if -> IF expression body else .)
+    WHILE           reduce using rule 27 (if -> IF expression body else .)
+    VAR             reduce using rule 27 (if -> IF expression body else .)
+    VAL             reduce using rule 27 (if -> IF expression body else .)
+    NAME            reduce using rule 27 (if -> IF expression body else .)
+    PRINT_INT       reduce using rule 27 (if -> IF expression body else .)
+    PRINT_FLOAT     reduce using rule 27 (if -> IF expression body else .)
+    PRINT_ARRAYINT  reduce using rule 27 (if -> IF expression body else .)
+    PRINT_ARRAYINT2 reduce using rule 27 (if -> IF expression body else .)
+    PRINT_STRING    reduce using rule 27 (if -> IF expression body else .)
+    PRINT_CHAR      reduce using rule 27 (if -> IF expression body else .)
+    PRINT_BOOLEAN   reduce using rule 27 (if -> IF expression body else .)
+
+
+state 150
+
+    (28) else -> ELSE . body
+    (17) body -> . LBRACE statement_list RBRACE
+
+    LBRACE          shift and go to state 75
+
+    body                           shift and go to state 154
+
+state 151
+
+    (89) assignment -> array_call_or_name ASSIGN expression SEMICOLON .
+
+    RBRACE          reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    IF              reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    WHILE           reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    VAR             reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    VAL             reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    NAME            reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    PRINT_INT       reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    PRINT_FLOAT     reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    PRINT_ARRAYINT  reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    PRINT_ARRAYINT2 reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    PRINT_STRING    reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    PRINT_CHAR      reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+    PRINT_BOOLEAN   reduce using rule 89 (assignment -> array_call_or_name ASSIGN expression SEMICOLON .)
+
+
+state 152
+
+    (41) print -> print_type LPAREN value RPAREN .
+
+    SEMICOLON       reduce using rule 41 (print -> print_type LPAREN value RPAREN .)
+
+
+state 153
+
+    (93) array_call_inline -> name LBRACKET value RBRACKET LBRACKET value . RBRACKET
+
+    RBRACKET        shift and go to state 155
+
+
+state 154
+
+    (28) else -> ELSE body .
+
+    RBRACE          reduce using rule 28 (else -> ELSE body .)
+    IF              reduce using rule 28 (else -> ELSE body .)
+    WHILE           reduce using rule 28 (else -> ELSE body .)
+    VAR             reduce using rule 28 (else -> ELSE body .)
+    VAL             reduce using rule 28 (else -> ELSE body .)
+    NAME            reduce using rule 28 (else -> ELSE body .)
+    PRINT_INT       reduce using rule 28 (else -> ELSE body .)
+    PRINT_FLOAT     reduce using rule 28 (else -> ELSE body .)
+    PRINT_ARRAYINT  reduce using rule 28 (else -> ELSE body .)
+    PRINT_ARRAYINT2 reduce using rule 28 (else -> ELSE body .)
+    PRINT_STRING    reduce using rule 28 (else -> ELSE body .)
+    PRINT_CHAR      reduce using rule 28 (else -> ELSE body .)
+    PRINT_BOOLEAN   reduce using rule 28 (else -> ELSE body .)
+
+
+state 155
+
+    (93) array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .
+
+    TIMES           reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    DIVIDE          reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    PLUS            reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    MINUS           reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    EXPONENT        reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    REMAINDER       reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    EQUALS          reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    NOTEQUALS       reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    GE              reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    GT              reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    LE              reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    LT              reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    SEMICOLON       reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    AND             reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    OR              reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    RPAREN          reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    COMMA           reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    LBRACE          reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    ASSIGN          reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+    RBRACKET        reduce using rule 93 (array_call_inline -> name LBRACKET value RBRACKET LBRACKET value RBRACKET .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for FUN in state 0 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 0 resolved as shift
+WARNING: shift/reduce conflict for VAL in state 0 resolved as shift
+WARNING: shift/reduce conflict for IF in state 75 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 75 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 75 resolved as shift
+WARNING: shift/reduce conflict for VAL in state 75 resolved as shift
+WARNING: shift/reduce conflict for NAME in state 75 resolved as shift
+WARNING: shift/reduce conflict for PRINT_INT in state 75 resolved as shift
+WARNING: shift/reduce conflict for PRINT_FLOAT in state 75 resolved as shift
+WARNING: shift/reduce conflict for PRINT_ARRAYINT in state 75 resolved as shift
+WARNING: shift/reduce conflict for PRINT_ARRAYINT2 in state 75 resolved as shift
+WARNING: shift/reduce conflict for PRINT_STRING in state 75 resolved as shift
+WARNING: shift/reduce conflict for PRINT_CHAR in state 75 resolved as shift
+WARNING: shift/reduce conflict for PRINT_BOOLEAN in state 75 resolved as shift
+WARNING: shift/reduce conflict for RBRACE in state 102 resolved as shift
+WARNING: shift/reduce conflict for IF in state 102 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 102 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 102 resolved as shift
+WARNING: shift/reduce conflict for VAL in state 102 resolved as shift
+WARNING: shift/reduce conflict for NAME in state 102 resolved as shift
+WARNING: shift/reduce conflict for PRINT_INT in state 102 resolved as shift
+WARNING: shift/reduce conflict for PRINT_FLOAT in state 102 resolved as shift
+WARNING: shift/reduce conflict for PRINT_ARRAYINT in state 102 resolved as shift
+WARNING: shift/reduce conflict for PRINT_ARRAYINT2 in state 102 resolved as shift
+WARNING: shift/reduce conflict for PRINT_STRING in state 102 resolved as shift
+WARNING: shift/reduce conflict for PRINT_CHAR in state 102 resolved as shift
+WARNING: shift/reduce conflict for PRINT_BOOLEAN in state 102 resolved as shift

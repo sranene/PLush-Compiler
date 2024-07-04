@@ -1,0 +1,19 @@
+Report on Project Progress and Challenges    
+    
+    1. Parser:
+Developed a parser capable of accepting a wide range of programs, from simple to complex ones. Implemented error handling to skip illegal characters and continue parsing.
+Challenges: Encountered difficulties with precedence handling but leveraged the Ply library and token ordering to address them.
+
+    2. Abstract Syntax Tree (AST) / Nodes:
+Implemented AST generation alongside parsing. Variables are assigned their types during parsing, streamlining the subsequent type checking process.
+
+    3. Type Checking:
+Implemented comprehensive type checking covering various scenarios, including: Verification of variable types; Validation of function return types; Ensuring functions have a return statement; Checking types of expressions and conditions for appropriate operations; Detection of variable modifications with val; Handling of out-of-context or non-existent variable calls; Validation of function parameters, including number and types; Ensuring print statement types match their respective values; Prevention of type mismatches in assignments.
+Challenges: Encountered errors across all cases during type checking, particularly in recursive scenarios. However, easily overcame challenges with provided examples from the course materials.
+
+    4. Interpreter:
+Developed a functional interpreter capable of processing most files, excluding those with arrays or nested arrays.
+
+    5. Compiler:
+Implemented a compiler utilizing FFI functions in functions.c to handle arrays and print statements. Successfully compiled valid files, although encountered challenges with arrays' printing values. The compiler might not fully support characters, booleans, or certain string operations due to a lack of testing in these areas.
+Challenges: Building the compiler proved to be the most challenging aspect. Overcame difficulties through research on LLVM documentation and Docker setup. Ensured correctness through rigorous testing and trial-and-error Docker adjustments.
